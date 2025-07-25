@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario</title>
+  <link rel="stylesheet" href="Estilo.css">
+</head>
+<body> 
+ <div class="encabezado"><p class="titulo">Formulario de pacientes</p></div>
+  <br>
+  <div class="Formulario">
+   
+    <br>
+    <br>
+    <form action="insertar.php" method="POST"> <br>
+    <input type="text" name="Nombre" placeholder="Nombre" required><br>
+    <br>
+    <input type="number" name="Cedula" placeholder="Cédula" required><br>
+    <br>
+    <input type="date" name="Fecha" required><br>
+    <br>
+
+    <div>
+      <label><input type="radio" name="Sexo" value="Femenino" required> Femenino</label>
+      <label><input type="radio" name="Sexo" value="Masculino"> Masculino</label>
+    </div>
+
+    <input type="email" name="Correo" placeholder="Correo" required><br>
+    <br>
+    <input type="tel" name="tel" placeholder="Teléfono" required><br>
+    <br>
+    <textarea name="His_med" placeholder="Historial Médico"></textarea><br>
+    <br>
+
+    <input type="submit" class="Guardar" value="Guardar">
+  </form>
+  </div>
+
+</body>
+</html>

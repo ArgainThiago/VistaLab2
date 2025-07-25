@@ -1,0 +1,44 @@
+
+body{
+    background-color:rgb(151, 188, 255);
+    font-family: Arial, sans-serif;
+    text-align: center;
+ padding: 10%;
+    box-sizing: border-box;
+    margin: 20px, 0;
+ 
+}
+.Formulario{
+    
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    border-radius: 30px;
+    color: black;
+    background-color: blanchedalmond;
+    box-shadow: 5px 5px 5px;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+padding: 20px;
+    margin: 30px auto;
+}
+.titulo{
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 0;
+    color: #000;
+}
+.Guardar{
+text-align: center;
+    width: 65px;
+    height: 30px;
+    background-color: rgb(0, 197, 197);
+    border-radius:30px ;
+}
+.encabezado{
+    height: 100px;
+    width: 100%;
+    background-color: rgb(0, 197, 197);
+}
