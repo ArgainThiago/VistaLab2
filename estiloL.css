@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-image: url('Inicio.jpg'); /* o 'img/fondo.jpg' según la ruta */
+  background-image: url('Inicio.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
