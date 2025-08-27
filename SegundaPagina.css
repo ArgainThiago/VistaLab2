@@ -1,0 +1,110 @@
+body{
+
+align-items: center;
+text-align: center;
+justify-content: center;
+display: flex;
+background-image: url(Inicio.png);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+background-attachment: fixed;
+
+}
+.superior{
+
+    display: flex;
+    background-color: #082c6c;
+    height: 100px;
+    width: 1000px;
+    border-radius: 30px;
+}
+.logo{
+    position: absolute;
+    height: 60px;
+    width: 170px;
+   right:300px;
+   top :30px;
+
+    
+}
+.mi-boton{
+    color: white;
+    margin-left: 130px;
+    top: 70px;
+    position: absolute;
+    height: 30px;
+    width: 100px;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #c4ad5c;
+    transition: backgroud-color 0.3s ease;
+
+}
+.mi-boton:hover{
+     background-color: #2069e0;
+}
+.Boton{
+    color: white;
+    margin-left: 20px;
+    top: 70px;
+    position: absolute;
+    height: 30px;
+    width: 100px;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #c4ad5c;
+    transition: backgroud-color 0.3s ease;
+}
+.Boton:hover{
+     background-color: #2069e0;
+}
+p{
+font-size: 30px;
+position: absolute;
+}
+.tablas{
+  display: flex;
+  position: absolute;
+  top: 200px;
+  background-color:#b2b8c5;
+  border-radius: 30px;
+  border-collapse: collapse;
+}
+.Cita{
+    top: 110px;
+    font-size: 50px;
+    position: absolute;
+}
+tr, th {
+  width: 500px;
+  height: 80px;
+  border: 1px solid black;
+  border-left: none;
+  border-right: none;
+
+}
+.Texto{
+    font-size: 50px;
+    color: #c4ad5c;
+    position: absolute;
+    top: -30px;
+    margin-left: 28px;
+
+}
+table{
+    border-collapse: collapse;
+}
+.Robot{
+    background-image: url(images.jpeg);
+    border-radius: 50px;
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 50px;
+    bottom: 40px;
+    box-shadow: 5px 5px #072558;
+}
