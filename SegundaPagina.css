@@ -1,14 +1,19 @@
+@font-face {
+    font-family:'OpenSans';
+    src: url(Fuentes/OpenSans-Italic-VariableFont_wdth\,wght.ttf);
+}
 body{
 
 align-items: center;
 text-align: center;
 justify-content: center;
 display: flex;
-background-image: url(Inicio.png);
+background-image: url(Imagenes/Inicio.png);
 background-size: cover;
 background-repeat: no-repeat;
 background-position: center;
 background-attachment: fixed;
+
 
 }
 .superior{
@@ -72,18 +77,27 @@ position: absolute;
   border-collapse: collapse;
 }
 .Cita{
+    font-family: 'OpenSans';
     top: 110px;
     font-size: 50px;
     position: absolute;
 }
 tr, th {
-  width: 500px;
-  height: 80px;
+  width: 300px;
+  height: 70px;
   border: 1px solid black;
   border-left: none;
   border-right: none;
 
 }
+.lateral{
+    border: 1px solid black;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+}
+
+
 .Texto{
     font-size: 50px;
     color: #c4ad5c;
@@ -96,7 +110,7 @@ table{
     border-collapse: collapse;
 }
 .Robot{
-    background-image: url(images.jpeg);
+    background-image: url(Imagenes/images.jpeg);
     border-radius: 50px;
     height: 100px;
     width: 100px;
@@ -107,4 +121,22 @@ table{
     right: 50px;
     bottom: 40px;
     box-shadow: 5px 5px #072558;
+}
+.Reprogramar{
+color: white;
+width: 100px;
+height: 20px;
+background-color:#082c6c;
+border-radius:10px;
+
+
+}
+.NoConcurrio{
+color: white;
+width: 100px;
+height: 20px;
+background-color:rgb(180, 0, 0);
+border-radius:10px;
+
+
 }
