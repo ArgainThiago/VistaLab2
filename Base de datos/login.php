@@ -23,7 +23,7 @@ if (empty($usuario) || empty($contrasena)) {
 //se prepara una consulta segura (prepare) para evitar inyección SQL (evita que nos manipulen la base de datos).
 //"ss" indica que ambos parámetros(contraseña y usuario) son strings
 
-$stmt = $conn->prepare("SELECT Cedula_P, Nombre_P FROM paciente WHERE Nombre_P=? AND Cedula_P=?");
+$stmt = $conn->prepare("SELECT Contraseña_P, Usuario_P FROM paciente WHERE Usuario_P=? AND Contraseña_P=?");
 $stmt->bind_param("ss", $usuario, $contrasena);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -31,15 +31,15 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
     $_SESSION['perfil'] = 'paciente';
-    $_SESSION['id'] = $row['Cedula_P'];
-    $_SESSION['usuario'] = $row['Nombre_P'];
-    header("Location: SegundaPagina.html");
+    $_SESSION['id'] = $row['Contraseña_P'];
+    $_SESSION['usuario'] = $row['Usuario_P'];
+    header("Location: ../Pacientes/SegundaPagina.html");
     exit;
     }
 $stmt->close();
 
 //Igual que la seccion de paciente, pero verifica en la tabla doctor.
-$stmt = $conn->prepare("SELECT Cedula_D, Nombre_D FROM doctor WHERE Nombre_D=? AND Cedula_D=?");
+$stmt = $conn->prepare("SELECT Contraseña_D, Usuario_D FROM doctor WHERE Usuario_D=? AND Contraseña_D=?");
 $stmt->bind_param("ss", $usuario, $contrasena);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -47,14 +47,14 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
     $_SESSION['perfil'] = 'medico';
-    $_SESSION['id'] = $row['Cedula_D'];
-    $_SESSION['usuario'] = $row['Nombre_D'];
-    header("Location: Pag_Medico.html");
+    $_SESSION['id'] = $row['Contraseña_D'];
+    $_SESSION['usuario'] = $row['Usuario_D'];
+    header("Location: ../Doctores/Pag_Medico.html");
     exit;
 }
 $stmt->close();
 
-$stmt = $conn->prepare("SELECT ID_Administrador, Correo FROM administrador WHERE Correo=? AND ID_Administrador=?");
+$stmt = $conn->prepare("SELECT Contraseña_A, Usuario_A FROM administrador WHERE Usuario_A=? AND Contraseña_A=?");
 $stmt->bind_param("ss", $usuario, $contrasena);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -62,9 +62,9 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
     $_SESSION['perfil'] = 'administrador';
-    $_SESSION['id'] = $row['ID_Administrador'];
-    $_SESSION['usuario'] = $row['Correo'];
-    header("Location: Pag_Admin.html");
+    $_SESSION['id'] = $row['Contraseña_A'];
+    $_SESSION['usuario'] = $row['Usuario_A'];
+    header("Location: ../Administradores/Pag_Admin.html");
     exit;
     }
 $stmt->close();
