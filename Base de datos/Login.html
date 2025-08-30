@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inicio de Sesión</title>
-  <link rel="stylesheet" href="estiloL.css" />
+  <link rel="stylesheet" href="../estiloL.css" />
 </head>
 <body>
   <div class="login-container">
     <h2>Inicio de sesión</h2>
-    <form>
+    <form action="login.php" method="POST">
       <label for="usuario">Usuario</label>
       <input type="text" id="usuario" name="usuario" required />
 
       <label for="contrasena">Contraseña</label>
-      <input type="password" id="contrasena" name="contrasena" required />
+      <input type="text" id="contrasena" name="contrasena" required />
 
       <button type="submit">Ingresar</button>
     </form>

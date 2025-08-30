@@ -3,9 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-08-2025 a las 15:45:32
+-- Tiempo de generación: 18-08-2025 a las 16:17:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
+
+-- Crear la base de datos y seleccionarla
+DROP DATABASE IF EXISTS `basededatos`;
+CREATE DATABASE `basededatos` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `basededatos`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -13,12 +18,12 @@ SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+ /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+ /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+ /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `prueba`
+-- Base de datos: `basededatos`
 --
 
 -- --------------------------------------------------------
@@ -31,7 +36,7 @@ CREATE TABLE `administrador` (
   `ID_Administrador` int(11) NOT NULL,
   `Correo` varchar(50) DEFAULT NULL,
   `Tel` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `administrador`
@@ -142,37 +147,22 @@ INSERT INTO `paciente` (`Cedula_P`, `Nombre_P`, `Fecha_Nac`, `Sexo`, `Correo`, `
 -- Índices para tablas volcadas
 --
 
---
--- Indices de la tabla `administrador`
---
 ALTER TABLE `administrador`
   ADD PRIMARY KEY (`ID_Administrador`);
 
---
--- Indices de la tabla `consulta`
---
 ALTER TABLE `consulta`
   ADD PRIMARY KEY (`ID_Consulta`),
   ADD KEY `Cedula_P` (`Cedula_P`),
   ADD KEY `ID_Especialidad` (`ID_Especialidad`);
 
---
--- Indices de la tabla `doctor`
---
 ALTER TABLE `doctor`
   ADD PRIMARY KEY (`Cedula_D`),
   ADD KEY `ID_Administrador` (`ID_Administrador`);
 
---
--- Indices de la tabla `especialidad`
---
 ALTER TABLE `especialidad`
   ADD PRIMARY KEY (`ID_Especialidad`),
   ADD KEY `Cedula_D` (`Cedula_D`);
 
---
--- Indices de la tabla `paciente`
---
 ALTER TABLE `paciente`
   ADD PRIMARY KEY (`Cedula_P`);
 
@@ -180,26 +170,18 @@ ALTER TABLE `paciente`
 -- Restricciones para tablas volcadas
 --
 
---
--- Filtros para la tabla `consulta`
---
 ALTER TABLE `consulta`
   ADD CONSTRAINT `consulta_ibfk_1` FOREIGN KEY (`Cedula_P`) REFERENCES `paciente` (`Cedula_P`),
   ADD CONSTRAINT `consulta_ibfk_2` FOREIGN KEY (`ID_Especialidad`) REFERENCES `especialidad` (`ID_Especialidad`);
 
---
--- Filtros para la tabla `doctor`
---
 ALTER TABLE `doctor`
   ADD CONSTRAINT `doctor_ibfk_1` FOREIGN KEY (`ID_Administrador`) REFERENCES `administrador` (`ID_Administrador`);
 
---
--- Filtros para la tabla `especialidad`
---
 ALTER TABLE `especialidad`
   ADD CONSTRAINT `especialidad_ibfk_1` FOREIGN KEY (`Cedula_D`) REFERENCES `doctor` (`Cedula_D`);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+ /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
