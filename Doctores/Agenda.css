@@ -1,0 +1,77 @@
+.calendario {
+  position: absolute;
+  top: 150px;
+    margin: 20px auto;
+    width: 500px;
+    background-color: #8599b6;
+    border-radius: 30px;
+    padding: 10px;
+    text-align: center;
+}
+
+.calendario table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.calendario th, .calendario td {
+    border: 1px solid black;
+    width: 14%;
+    height: 70px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.calendario th {
+    background-color: #d7b65a;
+}
+
+.dia-boton {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #8599b6;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.dia-boton:hover {
+    background-color:#c4ad5c ;
+    color: white;
+}
+
+.hoy {
+    background-color: #c4ad5c;
+    color: white;
+    font-weight: bold;
+}
+
+.navegacion {
+  top: 125px;
+  position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    margin: 10px auto;
+}
+
+.navegacion button {
+    position: absolute;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    background-color:#2069e0;
+    color: white;
+    cursor: pointer;
+}
+
+.navegacion button:hover {
+    background-color: #c4ad5c;
+}
+#mes-siguiente{
+  right: 150px;
+}
+#mes-anterior{
+  left: 150px;
+}
