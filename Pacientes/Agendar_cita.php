@@ -46,10 +46,7 @@ $conn->close();
   <div class="info-paciente">
     <p>Paciente: <?php echo htmlspecialchars($nombre_paciente); ?></p>
     <p>Cédula: <?php echo htmlspecialchars($cedula_paciente); ?></p>
-  </div>
-
-
-  <div class="info">
+ 
     <form method="get" action="#">
   
   <p>
@@ -65,11 +62,10 @@ $conn->close();
   <p>
     <label for="faviteOnlyor">Medico:</label>
     <select name="favoriteOnly" id="favoriteOnly">
-      <option>Cardiólogo</option>
-      <option>Neurocirujano</option>
-      <option>Medicina general</option>
-      <option>Cirujano</option>
-      <option>Pediatra</option>
+      <option>Jason Dematté</option>
+      <option>Lucas Gómez</option>
+      <option>Marcos Fernández</option>
+     
     </select>
   </p>
    <p>
@@ -79,6 +75,7 @@ $conn->close();
       <option>Tarde</option>
     </select>
   </p>
+  <br>
   <p>
     <input type="submit" value="Enviar" />
   </p>
