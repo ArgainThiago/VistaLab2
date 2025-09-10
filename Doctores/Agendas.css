@@ -1,0 +1,228 @@
+@font-face {
+    font-family:'OpenSans';
+    src: url(Fuentes/OpenSans-Italic-VariableFont_wdth\,wght.ttf);
+}
+body{
+
+align-items: center;
+text-align: center;
+justify-content: center;
+display: flex;
+background-image: url(../Imagenes/Inicio.png);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+background-attachment: fixed;
+
+
+}
+.superior{
+
+    display: flex;
+    background-color: #082c6c;
+    height: 100px;
+    width: 1000px;
+    border-radius: 30px;
+}
+.logo{
+    position: absolute;
+    height: 60px;
+    width: 170px;
+   right:300px;
+   top :30px;
+
+    
+}
+.mi-boton{
+    color: white;
+    margin-left: 130px;
+    top: 70px;
+    position: absolute;
+    height: 30px;
+    width: 100px;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #c4ad5c;
+    transition: backgroud-color 0.3s ease;
+
+}
+.mi-boton:hover{
+     background-color: #2069e0;
+}
+.Boton{
+    color: white;
+    margin-left: 20px;
+    top: 70px;
+    position: absolute;
+    height: 30px;
+    width: 100px;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #c4ad5c;
+    transition: backgroud-color 0.3s ease;
+}
+.Boton:hover{
+     background-color: #2069e0;
+}
+p{
+font-size: 30px;
+position: absolute;
+}
+.tablas{
+  width: 700px;
+  height: 400px;
+  display: flex;
+  position: absolute;
+  top: 200px;
+  background-color:#b2b8c5;
+  border-radius: 30px;
+  border-collapse: collapse;
+  text-align: center;
+
+
+}
+.Cita{
+    font-family: 'OpenSans';
+    top: 110px;
+    font-size: 50px;
+    position: absolute;
+}
+.dentro{
+  
+    right: 200px;
+    border-radius: 30px;
+    width: 300px;
+    height: 50px;
+    background-color: #929aa3;
+    position: absolute;
+   
+    
+}
+.cuadrados {
+  
+opacity: 3;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+
+
+}
+.cuadradostr{
+  border-top:none;
+  border-bottom: none;
+position: absolute;
+top:-60px;
+right: -330px;
+}
+tr, th {
+
+  width: 300px;
+  height: 70px;
+  border: 1px solid black;
+  border-left: none;
+  border-right: none;
+
+}
+.lateral{
+    border: 1px solid black;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+}
+
+
+.Texto{
+    font-size: 50px;
+    color: #c4ad5c;
+    position: absolute;
+    top: -40px;
+    margin-left: 28px;
+
+}
+table{
+  top: 70px;
+  position: absolute;
+    border-collapse: collapse;
+}
+.Robot{
+    background-image: url(../Imagenes/images.jpeg);
+    border-radius: 50px;
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 50px;
+    bottom: 40px;
+    box-shadow: 5px 5px #072558;
+}
+.Reprogramar{
+color: white;
+width: 100px;
+height: 20px;
+background-color:#082c6c;
+border-radius:10px;
+
+
+}
+.NoConcurrio{
+color: white;
+width: 100px;
+height: 20px;
+background-color:rgb(180, 0, 0);
+border-radius:10px;
+
+
+}
+.group {
+  line-height: 28px;
+  align-items: center;
+  position: absolute;
+  max-width: 190px;
+  top: 70px;
+  left: 212px;
+}
+
+.input {
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  height: 30px;
+  padding-left: 2.5rem;
+  /*box-shadow: 0 0 0 1.5px #2b2c37, 0 0 25px -17px #000;*/
+  border: 0;
+  border-radius: 12px;
+  background-color: #c4ad5c;
+  outline: none;
+  color: #000000;
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: text;
+  z-index: 0;
+}
+
+.input::placeholder {
+  color: #000000;
+}
+
+.input:hover {
+  box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
+}
+
+.input:active {
+  transform: scale(0.95);
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2.5px #082c6c;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  fill: #000000;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  z-index: 1;
+  top: 8px;
+}
