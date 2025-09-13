@@ -2,16 +2,13 @@
 session_start();
 include '../Base de datos/Conexion.php'; 
 
-//Verificarsi hay paciente logueado
 if (!isset($_SESSION['usuario']) || $_SESSION['perfil'] !== 'paciente') {
     header("Location: ../login.html");
     exit();
 }
 
-//Obtenemos el usuario de la sesion
 $usuario_sesion = $_SESSION['usuario'];
 
-// Consultamo el nombre y la cédula del paciente en la base de datos
 $stmt = $conn->prepare("SELECT Nombre_P, Cedula_P FROM paciente WHERE Usuario_P=?");
 $stmt->bind_param("s", $usuario_sesion);
 $stmt->execute();
@@ -27,7 +24,16 @@ if ($result->num_rows === 1) {
 }
 
 $stmt->close();
-$conn->close();
+
+$fechaSeleccionada = isset($_GET['fecha']) ? $_GET['fecha'] : date('Y-m-d');
+$hoy = date('Y-m-d');
+
+if ($fechaSeleccionada < $hoy) {
+    echo "<script>alert('No se puede seleccionar una fecha pasada.'); window.location.href='calendario.php';</script>";
+    exit();
+}
+
+$especialidades = $conn->query("SELECT ID_Especialidad, Nom_Especialidad FROM especialidad");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -37,6 +43,7 @@ $conn->close();
   <title>Agendar cita</title>
   <link rel="stylesheet" href="../estiloL.css">
   <link rel="stylesheet" href="Estilo.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="cuadrado">
@@ -46,43 +53,80 @@ $conn->close();
   <div class="info-paciente">
     <p>Paciente: <?php echo htmlspecialchars($nombre_paciente); ?></p>
     <p>Cédula: <?php echo htmlspecialchars($cedula_paciente); ?></p>
- 
-    <form method="get" action="#">
-  
-  <p>
-    <label for="faviteOnlyor">Especialidad:</label>
-    <select name="favoriteOnly" id="favoriteOnly">
-      <option>Cardiólogo</option>
-      <option>Neurocirujano</option>
-      <option>Medicina general</option>
-      <option>Cirujano</option>
-      <option>Pediatra</option>
-    </select>
-  </p>
-  <p>
-    <label for="faviteOnlyor">Medico:</label>
-    <select name="favoriteOnly" id="favoriteOnly">
-      <option>Jason Dematté</option>
-      <option>Lucas Gómez</option>
-      <option>Marcos Fernández</option>
-     
-    </select>
-  </p>
-   <p>
-    <label for="faviteOnlyor">Hora:</label>
-    <select name="favoriteOnly" id="favoriteOnly">
-      <option>Mañana</option>
-      <option>Tarde</option>
-    </select>
-  </p>
-  <br>
-  <p>
-    <input type="submit" value="Enviar" />
-  </p>
-</form>
+    <p>Fecha seleccionada: <?php echo htmlspecialchars($fechaSeleccionada); ?></p>
+
+    <form method="post" action="guardar_cita.php">
+        <input type="hidden" name="fecha" value="<?php echo $fechaSeleccionada; ?>">
+        <input type="hidden" name="cedula_p" value="<?php echo $cedula_paciente; ?>">
+
+        <p>
+            <label for="especialidad">Especialidad:</label>
+            <select name="id_especialidad" id="especialidad" required>
+                <option value="">Seleccione la especialidad</option>
+                <?php while($esp = $especialidades->fetch_assoc()): ?>
+                    <option value="<?php echo $esp['ID_Especialidad']; ?>"><?php echo $esp['Nom_Especialidad']; ?></option>
+                <?php endwhile; ?>
+            </select>
+        </p>
+
+        <p>
+            <label for="medico">Médico:</label>
+            <select name="cedula_d" id="medico" required>
+                <option value="">Seleccione el médico</option>
+            </select>
+        </p>
+
+        <p>
+            <label for="horario">Horario:</label>
+            <select name="hora" id="horario" required>
+                <option value="">Seleccione el horario</option>
+            </select>
+        </p>
+
+        <p>
+            <input type="submit" value="Agendar" />
+        </p>
+    </form>
   </div>
 </div>
 
+<script>
+$(document).ready(function() {
+    $('#especialidad').change(function() {
+        var id_especialidad = $(this).val();
+        if(id_especialidad) {
+            $.ajax({
+                type: 'POST',
+                url: 'obtener_medicos.php',
+                data: {id_especialidad: id_especialidad},
+                success: function(html) {
+                    $('#medico').html(html);
+                    $('#horario').html('<option value="">Seleccione el horario</option>');
+                }
+            });
+        } else {
+            $('#medico').html('<option value="">Seleccione el médico</option>');
+            $('#horario').html('<option value="">Seleccione el horario</option>');
+        }
+    });
 
+    $('#medico').change(function() {
+        var cedula_d = $(this).val();
+        var fecha = $('input[name="fecha"]').val();
+        if(cedula_d && fecha) {
+            $.ajax({
+                type: 'POST',
+                url: 'obtener_horarios.php',
+                data: {cedula_d: cedula_d, fecha: fecha},
+                success: function(html) {
+                    $('#horario').html(html);
+                }
+            });
+        } else {
+            $('#horario').html('<option value="">Seleccione el horario</option>');
+        }
+    });
+});
+</script>
 </body>
 </html>

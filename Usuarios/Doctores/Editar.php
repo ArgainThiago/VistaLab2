@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $ID_Administrador=mysqli_real_escape_string($conn, $_POST['ID_Administrador']);
     
 
-    $_sql="UPDATE doctor SET Nombre_D='$Nombre_D', His_med='$His_med', Tel='$tel', Correo='$Correo', Contraseña_D='$Contraseña_A', ID_Administrador=$ID_Administrador WHERW Cedula_D=$Cedula_D";
+    $_sql="UPDATE doctor SET Nombre_D='$Nombre_D', His_med='$His_med', Tel='$tel', Correo='$Correo', Contraseña_D='$Contraseña_D', ID_Administrador=$ID_Administrador WHERW Cedula_D=$Cedula_D";
     if (mysqli_query($conn, $sql)){
         echo "Doctor actualizado correctamente. ";
 
