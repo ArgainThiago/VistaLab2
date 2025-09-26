@@ -19,18 +19,18 @@ background-attachment: fixed;
 .superior{
 
     display: flex;
-    background-color: #082c6c;
+    background-color: #ff0000;
     height: 100px;
     width: 1000px;
     border-radius: 30px;
 }
 .Texto {
-    font-size: 30px;        /* un poco más chico para que entre mejor */
+    font-size: 30px;        
     color: #c4ad5c;
     position: absolute;
-    top: 20px;              /* 👈 ahora sí sube */
-    left: 300px;            /* desplazado a la derecha */
-    line-height: 1;         /* evita que el texto se vea desfasado */
+    top: 20px;             
+    left: 300px;           
+    line-height: 1;         
 }
 
 .logo{
