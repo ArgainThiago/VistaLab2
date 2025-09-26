@@ -24,14 +24,43 @@ background-attachment: fixed;
     width: 1000px;
     border-radius: 30px;
 }
+.Texto {
+    font-size: 30px;        /* un poco más chico para que entre mejor */
+    color: #c4ad5c;
+    position: absolute;
+    top: 20px;              /* 👈 ahora sí sube */
+    left: 300px;            /* desplazado a la derecha */
+    line-height: 1;         /* evita que el texto se vea desfasado */
+}
+
 .logo{
     position: absolute;
     height: 60px;
     width: 190px;
-    right:300px;
+    right:310px;
     top :30px;
 
-    
+}
+.Ajustes {
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;      
+    right: 285px;   
+    height: 40px;  
+    width: 40px;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.Ajustes img {
+    height: 70%;     
+    width: 70%;
+    object-fit: contain;
 }
 .mi-boton{
     color: white;
@@ -64,10 +93,7 @@ background-attachment: fixed;
 .Boton:hover{
      background-color: #2069e0;
 }
-p{
-font-size: 30px;
-position: absolute;
-}
+
 .tablas{
   display: flex;
   position: absolute;
