@@ -1,0 +1,103 @@
+<?php 
+session_start();
+include '../Base de datos/Conexion.php'; 
+
+if (!isset($_SESSION['usuario']) || $_SESSION['perfil'] !== 'paciente') {
+    header("Location: ../login.html");
+    exit();
+}
+
+$usuario_sesion = $_SESSION['usuario'];
+
+$stmt = $conn->prepare("SELECT Nombre_P, Cedula_P FROM paciente WHERE Usuario_P=?");
+$stmt->bind_param("s", $usuario_sesion);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 1) {
+    $row = $result->fetch_assoc();
+    $nombre_paciente = $row['Nombre_P'];
+    $cedula_paciente = $row['Cedula_P'];
+} else {
+    die("Error: no se encontró el paciente.");
+}
+
+$stmt->close();
+
+$sql = "SELECT 
+            c.ID_Consulta AS Numero,
+            c.Fecha_Consulta AS Fecha,
+            e.Nom_Especialidad AS Especialidad,
+            d.Nombre_D AS Medico,
+            c.Estado
+        FROM consulta c
+        INNER JOIN especialidad e ON c.ID_Especialidad = e.ID_Especialidad
+        INNER JOIN doctor d ON c.Cedula_D = d.Cedula_D
+        WHERE c.Cedula_P = ?
+        ORDER BY c.Fecha_Consulta DESC";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $cedula_paciente);
+$stmt->execute();
+$consultas = $stmt->get_result();
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaludLab - Citas</title>
+    <link rel="stylesheet" href="../SegundaPagina.css">
+</head>
+<body>
+    <button class="Robot"></button>
+    
+    <div class="superior">
+        <button onclick="location.href='Agenda.php'" class="mi-boton">Agregar Cita</button>
+        <p class="Texto">SaludLab</p>
+        <img src="../Imagenes/logohospital.png" alt="logo" class="logo">
+    </div>
+
+    <h1 class="Cita">Citas</h1>
+
+    <div class="tablas">
+        <div class="estilos">
+            <table border="1" cellpadding="5" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Especialidad</th>
+                        <th>Médico</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if ($consultas->num_rows > 0): ?>
+                        <?php while ($cita = $consultas->fetch_assoc()): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($cita['Fecha']); ?></td>
+                                <td><?php echo htmlspecialchars($cita['Especialidad']); ?></td>
+                                <td><?php echo htmlspecialchars($cita['Medico']); ?></td>
+                                <td>
+                                    <?php if($cita['Estado'] === 'Ocupado'): ?>
+                                        <form method="post" action="cancelar_cita.php" style="display:inline;">
+                                            <input type="hidden" name="id_consulta" value="<?php echo $cita['Numero']; ?>">
+                                            <input type="submit" value="Cancelar" onclick="return confirm('¿Seguro que deseas cancelar esta cita?');">
+                                        </form>
+                                    <?php else: ?>
+                                        -
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="4">No tienes citas agendadas.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

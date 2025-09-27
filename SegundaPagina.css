@@ -23,6 +23,7 @@ background-attachment: fixed;
     height: 100px;
     width: 1000px;
     border-radius: 30px;
+    
 }
 .Texto {
     font-size: 30px;        
@@ -85,7 +86,7 @@ background-attachment: fixed;
 }
 .mi-boton{
     color: white;
-    margin-left: 130px;
+    margin-left: 120px;
     top: 70px;
     position: absolute;
     height: 30px;
@@ -186,4 +187,8 @@ background-color:rgb(180, 0, 0);
 border-radius:10px;
 
 
+}
+tr{
+    height: 50px;
+    width: 100px;
 }

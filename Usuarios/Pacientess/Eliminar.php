@@ -1,15 +1,19 @@
-<?php 
+<?php
 include("../Conexion.php");
 
-$Cedula_P=$row['Cedula_P'];
-
-$sql="DELETE FROM Cedula_P WHERE Cedula_P=$Cedula_P";
-if(mysqli_query($conn, $sql)){
-    echo "Paciente eliminado Correctamente.";
-
-}else {
-    echo"Error: " . mysqli_error($conn);
+if (isset($_GET['Cedula_P']) && is_numeric($_GET['Cedula_P'])) {
+    $Cedula_P = (int) $_GET['Cedula_P'];
+} else {
+    die("Cédula del paciente inválida.");
 }
 
+$sql = "DELETE FROM paciente WHERE Cedula_P = $Cedula_P";
+
+if (mysqli_query($conn, $sql)) {
+    echo "Paciente eliminado correctamente.";
+} else {
+    echo "Error: " . mysqli_error($conn);
+}
 ?>
+
 <a href="listar.php">Volver</a>

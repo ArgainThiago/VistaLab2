@@ -33,7 +33,7 @@ if ($result->num_rows === 1) {
     $_SESSION['perfil'] = 'paciente';
     $_SESSION['id'] = $row['Contraseña_P'];
     $_SESSION['usuario'] = $row['Usuario_P'];
-    header("Location: ../Pacientes/SegundaPagina.html");
+    header("Location: ../Pacientes/SegundaPagina.php");
     exit;
     }
 $stmt->close();

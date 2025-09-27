@@ -11,6 +11,8 @@ $result = mysqli_query($conn, "SELECT * FROM administrador");
         <th>ID De Administrador</th>
         <th>Correo</th>
         <th>Tel</th>
+        <th>Contraseña</th>
+        <th>Usuario</th>
         <th>Acciones</th>
     </tr>
     <?php while($row=mysqli_fetch_assoc($result)){
@@ -19,11 +21,12 @@ $result = mysqli_query($conn, "SELECT * FROM administrador");
             <td><?php echo $row['ID_Administrador'];?></td>
             <td><?php echo $row['Correo'];?></td>
             <td><?php echo $row['Tel'];?></td>
-            <td><?php echo $row['Contraseña_A'];?></td>
+            <td><?php echo $row['Contraseña_A'];?></td> 
+            <td><?php echo $row['Usuario_A'];?></td>
             <td>
                 <a href="Editar.php?ID_Administrador=<?php echo $row['ID_Administrador']; ?>">Editar</a>
                 <a href="Eliminar.php?ID_Administrador=<?php echo $row['ID_Administrador']; ?>">Eliminar</a>
-                <a href="Crear.php?ID_Administrador=<?php echo $row['ID_Administrador']; ?>">Crear</a>
+               
             </td>
 
         </tr>
@@ -31,3 +34,4 @@ $result = mysqli_query($conn, "SELECT * FROM administrador");
         
         <?php }?>
 </table>
+ <a href="Crear.php?ID_Administrador">Crear</a>

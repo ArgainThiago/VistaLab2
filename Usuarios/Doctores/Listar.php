@@ -15,6 +15,7 @@ $result = mysqli_query($conn, "SELECT * FROM doctor");
         <th>Tel</th>
         <th>Contraseña_D</th>
         <th>ID De Administrador</th>
+        <th>Usuario_D</th>
         <th>Acciones</th>
     </tr>
     <?php while($row=mysqli_fetch_assoc($result)){
@@ -27,10 +28,11 @@ $result = mysqli_query($conn, "SELECT * FROM doctor");
             <td><?php echo $row['Tel'];?></td>
             <td><?php echo $row['Contraseña_D'];?></td>
             <td><?php echo $row['ID_Administrador'];?></td>
+            <td><?php echo $row['Usuario_D'];?></td>
             <td>
                 <a href="Editar.php?Cedula_D=<?php echo $row['Cedula_D']; ?>">Editar</a>
                 <a href="Eliminar.php?Cedula_D=<?php echo $row['Cedula_D']; ?>">Eliminar</a>
-                <a href="Crear.php?Cedula_D=<?php echo $row['Cedula_D']; ?>">Crear</a>
+              
             </td>
 
         </tr>
@@ -38,3 +40,4 @@ $result = mysqli_query($conn, "SELECT * FROM doctor");
         
         <?php }?>
 </table>
+  <a href="Crear.php?Cedula_D">Crear</a>

@@ -5,8 +5,8 @@ $result = mysqli_query($conn, "SELECT * FROM paciente");
 
 ?>
 
-<h2>Lista de Administradores </h2> 
-<a href="Crear.php">Crear Paciente</a>
+<h2>Lista de Pacientes </h2> 
+
 <Table border="1">
     <tr>
         <th>Nombre Del Paciente</th>
@@ -42,3 +42,4 @@ $result = mysqli_query($conn, "SELECT * FROM paciente");
         
         <?php }?>
 </table>
+<a href="Crear.php">Crear Paciente</a>

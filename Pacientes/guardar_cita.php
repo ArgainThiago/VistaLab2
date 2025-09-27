@@ -31,7 +31,7 @@ if(isset($_POST['cedula_p'], $_POST['id_especialidad'], $_POST['cedula_d'], $_PO
     $stmt_insert->bind_param("iisss", $cedula_d, $id_especialidad, $fecha, $hora, $cedula_p);
 
     if($stmt_insert->execute()){
-     echo "<script>alert('Cita agendada con éxito'); window.location.href='http://localhost/VistaLab/Pacientes/SegundaPagina.html';</script>";
+     echo "<script>alert('Cita agendada con éxito'); window.location.href='http://localhost/VistaLab/Pacientes/SegundaPagina.php';</script>";
 
     } else {
         echo "<script>alert('Error al guardar la cita'); window.location.href='Agenda.php';</script>";
