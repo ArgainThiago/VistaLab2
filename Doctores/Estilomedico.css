@@ -191,3 +191,18 @@ border-radius:10px;
   z-index: 1;
   top: 8px;
 }
+.Agregar{
+    color: white;
+    margin-left: 20px;
+    top: 0px;
+    position: absolute;
+    height: 30px;
+    width: 100px;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #c4ad5c;
+    transition: backgroud-color 0.3s ease;
+}
+.Agregar:hover{
+     background-color: #2069e0;
+}
