@@ -7,6 +7,7 @@
     border-radius: 30px;
     padding: 10px;
     text-align: center;
+    
 }
 
 .calendario table {
@@ -74,4 +75,46 @@
 }
 #mes-anterior{
   left: 150px;
+}
+@media (max-width: 768px) {
+  .superior {
+    width: 100%;
+    flex-direction: column;
+    height: 70px;
+
+  }
+
+  .Texto {
+    font-size: 24px;
+    position: static; 
+    margin: 10px 0;
+  }
+
+  .logo {
+    width: 110px;
+    height: auto;
+    top:34px;
+    right: 14px;
+  }
+
+  .tablas {
+    flex-direction: column;
+    width: 100%;
+    overflow-x: auto;
+  }
+  .group{
+    width: 210px;
+    top:40px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+ .calendario{
+    width: 350px;
+
+ }
+
+ 
+
 }
