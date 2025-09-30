@@ -8,7 +8,7 @@ align-items: center;
 text-align: center;
 justify-content: center;
 display: flex;
-background-image: url(Imagenes/Inicio.png);
+background-image: url(../Imagenes/Inicio.png);
 background-size: cover;
 background-repeat: no-repeat;
 background-position: center;
@@ -82,7 +82,7 @@ background-attachment: fixed;
 
 .pac{
     color: white;
-    margin-left: 120px;
+    margin-left: 130px;
     top: 60px;
     position: absolute;
     height: 30px;
@@ -100,7 +100,7 @@ background-attachment: fixed;
 .mi-boton{
     color: white;
     margin-left: 20px;
-    top: 70px;
+    top: 50px;
     position: absolute;
     height: 30px;
     width: 100px;
@@ -116,7 +116,7 @@ background-attachment: fixed;
 .Boton{
     color: white;
     margin-left: 20px;
-    top: 70px;
+    top: 60px;
     position: absolute;
     height: 30px;
     width: 100px;
@@ -171,7 +171,7 @@ table{
     border-collapse: collapse;
 }
 .Robot{
-    background-image: url(Imagenes/images.jpeg);
+    background-image: url(../Imagenes/images.jpeg);
     border-radius: 50px;
     height: 100px;
     width: 100px;
@@ -268,7 +268,8 @@ tr{
   .superior {
     width: 100%;
     flex-direction: column;
-    height: auto;
+    height: 70px;
+
   }
 
   .Texto {
@@ -278,8 +279,10 @@ tr{
   }
 
   .logo {
-    width: 120px;
+    width: 110px;
     height: auto;
+    top:34px;
+    right: 14px;
   }
 
   .tablas {
@@ -302,5 +305,12 @@ tr{
     width: 80px;
     height: 25px;
     font-size: 12px;
+  }
+  .Boton{
+    top:40px;
+  }
+  .pac{
+    top:40px;
+    left:-15px;
   }
 }

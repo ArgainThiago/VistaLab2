@@ -49,7 +49,7 @@ if ($result->num_rows === 1) {
     $_SESSION['perfil'] = 'medico';
     $_SESSION['id'] = $row['Contraseña_D'];
     $_SESSION['usuario'] = $row['Usuario_D'];
-    header("Location: ../Doctores/Pag_Medico.html");
+    header("Location: ../Doctores/Pag_Medico.php");
     exit;
 }
 $stmt->close();

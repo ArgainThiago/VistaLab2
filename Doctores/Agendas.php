@@ -1,3 +1,15 @@
+
+<?php
+$dias = array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+$meses = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+
+$fecha_dia_semana = $dias[date('w')];
+$fecha_dia_mes = date('d');
+$fecha_mes = $meses[date('n') - 1]; // date('n') devuelve el mes de 1 a 12
+$fecha_ano = date('Y');
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +19,7 @@
      <link rel="stylesheet" href="Agendas.css">
 </head>
 <body>
- <button class="Robot"></button>
+ <button onclick="location.href=''" class="Agregar">Agregar</button>
  
  
     <div class="superior">
@@ -24,7 +36,7 @@
     id="query"
     class="input"
     type="search"
-    placeholder="Buscar pacientes..."
+    placeholder="Buscar citas..."
     name="searchbar"
 
   />
@@ -38,44 +50,38 @@
     </div>
     <h1 class="Cita">Agendas</h1>
 <div class="tablas">
+  <div class="fech">
+      <?php echo htmlspecialchars($fecha_dia_semana); ?> 
+     <?php echo htmlspecialchars($fecha_dia_mes); ?> de
+      <?php echo htmlspecialchars($fecha_mes); ?>
+      </div> 
     <div class="estilos">
-        <div class="dentro"> 
-          <table>
-          <tr class="cuadradostr">
-            <th class="cuadrados"></th>
-            <th class="cuadrados"></th>
-            <th class="cuadrados"></th>
-            <th class="cuadrados"></th>
-            <th class="cuadrados"></th>
-            <th class="cuadrados"></th>
-            <th class="cuadrados"></th>
-            </tr>
-          </table>
-        </div>
+       
     <table>
+      
         <tr>
             <th class="lateral">Consulta</th>
-            <th>Fecha:23-09-25 Numero:01Paciente: Raquel Pereira</th>
-            <th class="asistencia"><button class="NoConcurrio"> No concurrió</button>
-            <button class="Reprogramar">Reprogramar</button></th>
+            <th>Fecha:23-09-25 Numero:01 Paciente: Raquel Pereira</th>
+            
+            <th><button class="Reprogramar">Reprogramar</button></th>
         </tr>
       <tr>
         <th class="lateral">Control</th>
         <th>Fecha:11-05-25 Numero:02 Paciente:Ignacio Raul</th>
-        <th class="asistencia"><button class="NoConcurrio"> No concurrió</button>
-            <button class="Reprogramar">Reprogramar</button></th>
+        
+            <th><button class="Reprogramar">Reprogramar</button></th>
       </tr>
       <tr>
         <th class="lateral">Control</th>
         <th>Fecha: 12-06-25 N°:03 Paciente:Juan Sosa</th>
-        <th class="asistencia"><button class="NoConcurrio"> No concurrió</button>
-            <button class="Reprogramar">Reprogramar</button></th>
+        
+            <th><button class="Reprogramar">Reprogramar</button></th>
       </tr>
       <tr>
         <th class="lateral">Consulta</th>
         <th>Fecha: 29-12-25 N°:04 Paciente: Maria Benitez</th>
-        <th class="asistencia"><button class="NoConcurrio"> No concurrió</button>
-            <button class="Reprogramar">Reprogramar</button></th>
+        
+            <th><button class="Reprogramar">Reprogramar</button></th>
       </tr>
      
     </table>

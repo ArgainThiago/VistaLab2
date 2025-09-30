@@ -48,12 +48,26 @@ $consultas = $stmt->get_result();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaludLab - Citas</title>
     <link rel="stylesheet" href="../SegundaPagina.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
+
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+ 
+    <nav id="menu" class="menu">
+        <ul>
+            <li><a href="../inicio.html">Inicio</a></li>
+            
+        </ul>
+    </nav>
+
     <button class="Robot"></button>
     
+
     <div class="superior">
-        <button onclick="location.href='Agenda.php'" class="mi-boton">Agregar Cita</button>
+        <button onclick="location.href='Agenda.html'" class="mi-boton">Agregar Cita</button>
         <p class="Texto">SaludLab</p>
         <img src="../Imagenes/logohospital.png" alt="logo" class="logo">
     </div>
@@ -65,7 +79,7 @@ $consultas = $stmt->get_result();
             <table border="1" cellpadding="5" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Fecha</th>
+                        <th class="fecha">Fecha</th>
                         <th>Especialidad</th>
                         <th>Médico</th>
                         <th>Acción</th>
@@ -82,10 +96,10 @@ $consultas = $stmt->get_result();
                                     <?php if($cita['Estado'] === 'Ocupado'): ?>
                                         <form method="post" action="cancelar_cita.php" style="display:inline;">
                                             <input type="hidden" name="id_consulta" value="<?php echo $cita['Numero']; ?>">
-                                            <input type="submit" value="Cancelar" onclick="return confirm('¿Seguro que deseas cancelar esta cita?');">
+                                            <input type="submit" value="Cancelar" class="btn-cancelar" onclick="return confirm('¿Seguro que deseas cancelar esta cita?');">
                                         </form>
                                     <?php else: ?>
-                                        -
+                                        Cancelado
                                     <?php endif; ?>
                                 </td>
                             </tr>
@@ -99,5 +113,11 @@ $consultas = $stmt->get_result();
             </table>
         </div>
     </div>
+
+    <script>
+    function toggleMenu() {
+        document.getElementById("menu").classList.toggle("show");
+    }
+    </script>
 </body>
 </html>
