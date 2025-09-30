@@ -40,8 +40,7 @@ $fecha_ano = date('Y');
     name="searchbar"
 
   />
-
-
+    <button  onclick="location.href=''"class="Agregar">Agregar</button> 
 </div>
 
 

@@ -191,37 +191,18 @@ border-radius:10px;
   z-index: 1;
   top: 8px;
 }
-
-@media (max-width: 768px) {
-  .superior {
-    width: 100%;
-    flex-direction: column;
-    height: 70px;
-
-  }
-
-  .Texto {
-    font-size: 24px;
-    position: static; 
-    margin: 10px 0;
-  }
-
-  .logo {
-    width: 110px;
-    height: auto;
-    top:34px;
-    right: 14px;
-  }
-
-  .tablas {
-    flex-direction: column;
-    width: 100%;
-    overflow-x: auto;
-  }
-  .group{
-    width: 210px;
-    top:40px;
-    left: 20px;
-  }
+.Agregar{
+    color: white;
+    margin-left: 20px;
+    top: 0px;
+    position: absolute;
+    height: 30px;
+    width: 100px;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #c4ad5c;
+    transition: backgroud-color 0.3s ease;
 }
-
+.Agregar:hover{
+     background-color: #2069e0;
+}
