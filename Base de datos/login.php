@@ -64,7 +64,7 @@ if ($result->num_rows === 1) {
     $_SESSION['perfil'] = 'administrador';
     $_SESSION['id'] = $row['Contraseña_A'];
     $_SESSION['usuario'] = $row['Usuario_A'];
-    header("Location: ../Administradores/Pag_Admin.html");
+    header("Location: ../Administradores/Pag_Admin.php");
     exit;
     }
 $stmt->close();

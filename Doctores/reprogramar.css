@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../Imagenes/Inicio.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.cuadrado {
+    background-color: rgba(10,41,90,0.95);
+    border-radius: 30px;
+    padding: 30px 20px;
+    width: 400px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.info, .info-paciente {
+    align-self: stretch;
+    margin-bottom: 15px;
+}
+
+input, button {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+}
+
+button {
+    background-color: #f0d67a;
+    color: #0a295a;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e6c85c;
+}

@@ -1,0 +1,48 @@
+.cuadrado {
+    color: white;
+    position: absolute;
+    top: 10px;
+    height: auto;              
+    width: 400px;
+    background-color: #082c6c;
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;   
+    justify-content: flex-start; 
+    align-items: center;         
+    padding: 30px 20px;       
+    box-sizing: border-box;
+}
+
+.titulo {
+    font-size: 22px;
+    text-align: center;       
+    margin-bottom: 20px;       
+    font-weight: bold;
+}
+
+.info-paciente, .info {
+    align-self: stretch;       
+    text-align: left;
+    margin-bottom: 10px;    
+}
+
+input, button {
+    width: 100%;              
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+}
+
+button {
+    background-color: #fff;
+    color: #082c6c;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f1f1f1;
+}

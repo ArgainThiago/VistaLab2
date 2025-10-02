@@ -1,3 +1,11 @@
+
+<?php
+include("../Usuarios/Conexion.php");
+
+$result = mysqli_query($conn, "SELECT * FROM paciente");
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,7 +35,7 @@
     name="searchbar"
 
   />
-  <button class="Agregar">Agregar</button>
+  <button onclick="location.href='../Administradores/Paciente/Agregar.php'" class="Agregar">Agregar</button>
 </div>
 
         <p class="Texto">SaludLab</p>
@@ -37,62 +45,25 @@
     <h1 class="Cita">Pacientes</h1>
 <div class="tablas">
     <div class="estilos">
-    <table>
+    <Table border="1">
+
+    <?php while($row=mysqli_fetch_assoc($result)){
+        ?>
+       
         <tr>
-            <th>Paciente: Raquel Pereira </th>
-            <th>CI: 3345678-9</th>
-            <th class="asistencia"><button class="his">Historia Clínica</button>
-            <button class="seg">Seguimiento</button></th>
+            <td>Paciente: <?php echo $row['Nombre_P'];?></td>
+            <td>   CI: <?php echo $row['Cedula_P'];?></td>
+            <td>
+              <button onclick="location.href='../Administradores/Paciente/Eliminar.php?Cedula_P=<?php echo $row['Cedula_P']; ?>'" class="Boton1">Eliminar</button>
+              <button onclick="location.href='../Administradores/Paciente/Editar.php?Cedula_P=<?php echo $row['Cedula_P']; ?>'" class="Boton1">Modificar</button>
+               
+            </td>
+            
         </tr>
-      <tr>
-        <th>Paciente:  Juan Perez</th>
-        <th>CI: 7390678-5</th>
-        <th class="asistencia"><button class="his">Historia Clínica</button>
-            <button class="seg">Seguimiento</button></th>
-      </tr>
-      <tr>
-        <th>Paciente: Federico Pereira</th>
-        <th>CI: 5348678-0</th>
-        <th class="asistencia"><button class="his">Historia Clínica</button>
-            <button class="seg">Seguimiento</button></th>
-      </tr>
-      <tr>
-        <th>Paciente: Yokitof Okito</th>
-        <th>CI: 2579678-2</th>
-        <th class="asistencia"><button class="his">Historia Clínica</button>
-            <button class="seg">Seguimiento</button></th>
-      </tr>
-      <tr>
-        <th>Paciente: Rigoberto Laferia</th>
-        <th>CI: 4345669-1</th>
-        <th class="asistencia"><button class="his">Historia Clínica</button>
-            <button class="seg">Seguimiento</button></th>
-      </tr>
-      <tr>
-        <th>Paciente: Rogelio Fernandez </th>
-        <th>CI: 3345678-9</th>
-        <th class="asistencia"><button class="his">Historia Clínica</button>
-            <button class="seg">Seguimiento</button></th>
-      </tr>
-      <tr>
-        <th>Paciente:  Patricia Kasilinda</th>
-        <th>CI: 7390678-5</th>
-        <th class="asistencia"><button class="his">Historia Clínica</button>
-            <button class="seg">Seguimiento</button></th>
-      </tr>
-      <tr>
-        <th>Paciente: Leonardo Castillo</th>
-        <th>CI: 5348678-0</th>
-        <th class="asistencia"><button class="his">Historia Clínica</button>
-            <button class="seg">Seguimiento</button></th>
-      </tr>
-        <tr>
-        <th>Paciente: Mary Ana</th>
-        <th>CI: 2579678-2</th>
-        <th class="asistencia"><button class="his">Historia Clínica</button>
-            <button class="seg">Seguimiento</button></th>
-      </tr>
-    </table>
+        
+        
+        <?php }?>
+</table>
 </div>
 </div>
 

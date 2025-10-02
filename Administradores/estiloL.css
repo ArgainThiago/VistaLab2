@@ -1,0 +1,100 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+body::before {
+  content: "";
+  position: fixed;         
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../Imagenes/Inicio.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.login-container,
+.cuadrado,
+.superior,
+main,
+header,
+.tablas {
+  position: relative;
+  z-index: 1;
+}
+
+.login-container {
+  background-color: rgba(10, 41, 90, 0.95);
+  padding: 40px 30px;
+  border-radius: 30px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.login-container h2 {
+  color: #ffffff;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+
+label {
+  display: block;
+  text-align: left;
+  color: #ffffff;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  background-color: #c2c9da;
+  font-size: 14px;
+  margin-bottom: 15px;
+  height: auto;
+}
+
+
+button {
+  background-color: #f0d67a;
+  color: #0a295a;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e6c85c;
+}

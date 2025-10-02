@@ -117,10 +117,11 @@ table{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    position: absolute;
+    position: fixed;
     right: 50px;
     bottom: 40px;
     box-shadow: 5px 5px #072558;
+     z-index: 9999;
 }
 .seg{
 color: white;

@@ -24,9 +24,6 @@ if ($result->num_rows === 1) {
 
 $stmt->close();
 
-$hoy = date('Y-m-d');
-$manana = date('Y-m-d', strtotime('+1 day'));
-
 
 $sql = "SELECT 
             c.ID_Consulta AS Numero,
@@ -37,11 +34,11 @@ $sql = "SELECT
         FROM consulta c
         INNER JOIN especialidad e ON c.ID_Especialidad = e.ID_Especialidad
         LEFT JOIN paciente p ON c.Cedula_P = p.Cedula_P
-        WHERE c.Cedula_D = ? AND c.Fecha_Consulta BETWEEN ? AND ? AND c.Estado='Ocupado'
+        WHERE c.Cedula_D = ?
         ORDER BY c.Fecha_Consulta ASC, c.Horario ASC";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("iss", $cedula_doctor, $hoy, $manana);
+$stmt->bind_param("i", $cedula_doctor);
 $stmt->execute();
 $consultas = $stmt->get_result();
 ?>
@@ -52,19 +49,29 @@ $consultas = $stmt->get_result();
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SaludLab-Citas</title>
-<link rel="stylesheet" href="SegundaPagina.css">
+<link rel="stylesheet" href="Estilomedico.css">
 </head>
 <body>
 <button class="Robot"></button>
 
 <div class="superior">
-    <button onclick="location.href='BuscarPac.php'" class="pac">Pacientes</button>
-    <button onclick="location.href='Agenda.html'" class="Boton">Agenda</button> 
+    <div class="group">
+  <svg viewBox="0 0 24 24" aria-hidden="true" class="search-icon">
+    <g>
+      <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+    </g>
+  </svg>
+
+  <input id="query" class="input" type="search" placeholder="Buscar pacientes..." name="searchbar"/>
+  <button onclick="location.href='../Administradores/Doctor/Agregar.php'" class="Agregar">Agregar</button>
+</div>
+
+
     <p class="Texto">SaludLab - <?php echo htmlspecialchars($nombre_doctor); ?></p>
     <img src="../Imagenes/logohospital.png" alt="logo" class="logo">
 </div>
 
-<h1 class="Cita">Citas Hoy y Mañana</h1>
+<h1 class="Cita">Pacientes</h1>
 
 <div class="tablas">
     <div class="estilos">
@@ -83,14 +90,14 @@ $consultas = $stmt->get_result();
                             Paciente: <?php echo htmlspecialchars($cita['Paciente']); ?>
                         </th>
                         <th class="asistencia">
-                            <button class="NoConcurrio">No Concurrió</button>
-                            <button class="Reprogramar">Reprogramar</button>
-                        </th>
+    <button class="NoConcurrio">No Concurrió</button>
+    <button class="Reprogramar" onclick="location.href='reprogramar.php?id=<?php echo $cita['Numero']; ?>'">Reprogramar</button>
+</th>
                     </tr>
                 <?php endwhile; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="3">No hay citas pendientes para hoy o mañana.</td>
+                    <td colspan="3">No hay citas registradas.</td>
                 </tr>
             <?php endif; ?>
         </table>
