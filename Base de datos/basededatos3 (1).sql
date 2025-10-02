@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-08-2025 a las 16:13:27
+-- Tiempo de generación: 02-10-2025 a las 03:22:44
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `basededatos`
+-- Base de datos: `basededatos3`
 --
 
 -- --------------------------------------------------------
@@ -31,6 +31,7 @@ CREATE TABLE `administrador` (
   `ID_Administrador` int(11) NOT NULL,
   `Correo` varchar(50) DEFAULT NULL,
   `Tel` varchar(15) DEFAULT NULL,
+  `Usuario_A` varchar(50) DEFAULT NULL,
   `Contraseña_A` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -38,10 +39,10 @@ CREATE TABLE `administrador` (
 -- Volcado de datos para la tabla `administrador`
 --
 
-INSERT INTO `administrador` (`ID_Administrador`, `Correo`, `Tel`, `Contraseña_A`) VALUES
-(1, 'admin1@gmail.com', '099876554', '4321'),
-(2, 'admin2@gmail.com', '098765456', '321'),
-(3, 'admin3@gmail.com', '096875234', '21');
+INSERT INTO `administrador` (`ID_Administrador`, `Correo`, `Tel`, `Usuario_A`, `Contraseña_A`) VALUES
+(1, 'admin1@gmail.com', '099876554', 'admin1', '4321'),
+(2, 'admin2@gmail.com', '098765456', 'admin2', '321'),
+(3, 'admin3@gmail.com', '096875234', 'admin3', '21');
 
 -- --------------------------------------------------------
 
@@ -51,19 +52,39 @@ INSERT INTO `administrador` (`ID_Administrador`, `Correo`, `Tel`, `Contraseña_A
 
 CREATE TABLE `consulta` (
   `ID_Consulta` int(11) NOT NULL,
-  `Fecha_Consulta` date DEFAULT NULL,
+  `Cedula_D` int(11) NOT NULL,
+  `ID_Especialidad` int(11) NOT NULL,
+  `Fecha_Consulta` date NOT NULL,
+  `Horario` time NOT NULL,
   `Cedula_P` int(11) DEFAULT NULL,
-  `ID_Especialidad` int(11) DEFAULT NULL
+  `Estado` enum('Disponible','Ocupado','Cancelado') NOT NULL DEFAULT 'Disponible'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `consulta`
 --
 
-INSERT INTO `consulta` (`ID_Consulta`, `Fecha_Consulta`, `Cedula_P`, `ID_Especialidad`) VALUES
-(34, '2025-06-04', 23456789, 1),
-(67, '2025-06-05', 34567894, 2),
-(70, '2025-06-05', 58791235, 3);
+INSERT INTO `consulta` (`ID_Consulta`, `Cedula_D`, `ID_Especialidad`, `Fecha_Consulta`, `Horario`, `Cedula_P`, `Estado`) VALUES
+(1, 54367989, 1, '2025-09-06', '09:00:00', NULL, 'Disponible'),
+(2, 54367989, 1, '2025-09-06', '09:30:00', 23456789, 'Ocupado'),
+(3, 54367989, 1, '2025-09-06', '10:00:00', NULL, 'Disponible'),
+(4, 56784876, 2, '2025-10-03', '18:25:00', 34567894, 'Ocupado'),
+(5, 56789875, 3, '2025-09-06', '14:30:00', NULL, 'Disponible'),
+(6, 54367989, 1, '2025-09-09', '11:00:00', 23456789, 'Ocupado'),
+(7, 54367989, 1, '2025-09-09', '08:00:00', 23456789, 'Ocupado'),
+(8, 56784876, 2, '2025-10-01', '16:00:00', 23456789, 'Ocupado'),
+(9, 54367989, 1, '2025-09-20', '15:00:00', 23456789, 'Ocupado'),
+(10, 54367989, 1, '2025-09-11', '09:00:00', 23456789, 'Ocupado'),
+(12, 54367989, 1, '2025-09-28', '11:00:00', 34567894, 'Ocupado'),
+(13, 56789875, 3, '2025-09-27', '15:00:00', 34567894, 'Ocupado'),
+(14, 56789875, 3, '2025-09-30', '09:00:00', 34567894, 'Cancelado'),
+(15, 56784876, 2, '2025-09-28', '17:00:00', 34567894, 'Disponible'),
+(16, 56784876, 2, '2025-09-29', '17:00:00', 34567894, 'Disponible'),
+(17, 56784876, 2, '2025-10-31', '11:00:00', 57383315, 'Ocupado'),
+(18, 56784876, 2, '2025-10-12', '15:00:00', 34567894, 'Disponible'),
+(19, 56784876, 2, '2025-09-30', '17:00:00', 34567894, 'Ocupado'),
+(20, 56784876, 2, '2025-10-31', '10:00:00', 34567894, 'Ocupado'),
+(21, 56784876, 2, '2026-01-01', '15:00:00', 34567894, 'Disponible');
 
 -- --------------------------------------------------------
 
@@ -78,17 +99,19 @@ CREATE TABLE `doctor` (
   `His_med` varchar(1000) DEFAULT NULL,
   `Tel` varchar(15) DEFAULT NULL,
   `Contraseña_D` varchar(10) DEFAULT NULL,
-  `ID_Administrador` int(11) DEFAULT NULL
+  `ID_Administrador` int(11) DEFAULT NULL,
+  `Usuario_D` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `doctor`
 --
 
-INSERT INTO `doctor` (`Cedula_D`, `Nombre_D`, `Correo`, `His_med`, `Tel`, `Contraseña_D`, `ID_Administrador`) VALUES
-(54367989, 'Jason Dematté', 'jasond45@gmail.com', 'Atendimientos: 13/4/2002 - 16/6/2004 - 25/11/2004', '093453269', '123', 2),
-(56784876, 'Lucas Gómez', 'medlucasgom@gmail.com', 'Atendimientos: 15/8/2024 - 16/9/2024 - 25/1/2025', '097825637', '1234', 1),
-(56789875, 'Marcos Fernández', 'medmarcosfer@gmail.com', 'Atendimientos: 13/4/2004 - 16/6/2004 - 25/11/2004', '097835567', '12345', 1);
+INSERT INTO `doctor` (`Cedula_D`, `Nombre_D`, `Correo`, `His_med`, `Tel`, `Contraseña_D`, `ID_Administrador`, `Usuario_D`) VALUES
+(57746, 'Juncho', 'si@gmail.com', 'nada', '09881234', '1234', 3, 'jucho'),
+(54367989, 'Jason Dematté', 'jasond45@gmail.com', 'Atendimientos: 13/4/2002 - 16/6/2004 - 25/11/2004', '093453269', '1234', 2, 'jason'),
+(56784876, 'Lucas Gómez', 'medlucasgom@gmail.com', 'Atendimientos: 15/8/2024 - 16/9/2024 - 25/1/2025', '097825637', '1234', 1, 'lucas'),
+(56789875, 'Marcos Fernández', 'medmarcosfer@gmail.com', 'Atendimientos: 13/4/2004 - 16/6/2004 - 25/11/2004', '097835567', '12345', 1, 'marcos');
 
 -- --------------------------------------------------------
 
@@ -127,19 +150,19 @@ CREATE TABLE `paciente` (
   `Correo` varchar(50) DEFAULT NULL,
   `His_med` varchar(1000) DEFAULT NULL,
   `Tel` varchar(15) DEFAULT NULL,
-  `Contraseña_P` varchar(10) DEFAULT NULL
+  `Contraseña_P` varchar(10) DEFAULT NULL,
+  `Usuario_P` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `paciente`
 --
 
-INSERT INTO `paciente` (`Cedula_P`, `Nombre_P`, `Fecha_Nac`, `Sexo`, `Correo`, `His_med`, `Tel`, `Contraseña_P`) VALUES
-(23456789, 'Pedro García', '1980-05-16', 'Hombre', 'padrito@gmail.com', 'blablablablablablabla', '097876543', '23415'),
-(34567894, 'Martín López', '1989-06-06', 'Hombre', 'martincho12@gmail.com', 'Enfermedad: Sarampión 12/3/2014', '096784671', '1231'),
-(57284529, 'Ramirito III de Ceibal el más viral', '2007-11-11', 'Masculino', 'ramiroo@gmail.com', 'Sida', '098657234', '33234'),
-(57383315, 'belen', '2007-09-06', 'Femenino', 'bebel@gmail.com', 'cancer de mama', '0998787', '34321'),
-(58791235, 'Juanita Martinez', '1970-12-09', 'Mujer', 'juanitamar4@gmail.com', 'Citas: 12/4/2017 - 12/4/2018 - 12/4/2019 - 12/4/2020 - 12/4/2021 - 12/4/2022', '092346578', '34323');
+INSERT INTO `paciente` (`Cedula_P`, `Nombre_P`, `Fecha_Nac`, `Sexo`, `Correo`, `His_med`, `Tel`, `Contraseña_P`, `Usuario_P`) VALUES
+(23456789, 'Pedro García', '1980-05-16', 'Hombre', 'padrito@gmail.com', 'blablablablablablabla', '097876543', '23415', 'pedro'),
+(34567894, 'Martín López', '1989-06-06', 'Hombre', 'martincho12@gmail.com', 'Enfermedad: Sarampión 12/3/2014', '096784671', '1231', 'martin'),
+(57284529, 'Ramirito 123', '2007-11-11', 'Masculino', 'ramiroo@gmail.com', 'Sano (por ahora)', '098657234', '33234', 'Ramiro'),
+(57383315, 'belecita', '2007-09-06', 'Femenino', 'bebel@gmail.com', 'nada', '0998787', '34321', 'Belen');
 
 --
 -- Índices para tablas volcadas
@@ -156,6 +179,7 @@ ALTER TABLE `administrador`
 --
 ALTER TABLE `consulta`
   ADD PRIMARY KEY (`ID_Consulta`),
+  ADD KEY `Cedula_D` (`Cedula_D`),
   ADD KEY `Cedula_P` (`Cedula_P`),
   ADD KEY `ID_Especialidad` (`ID_Especialidad`);
 
@@ -187,19 +211,19 @@ ALTER TABLE `paciente`
 -- AUTO_INCREMENT de la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `ID_Administrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Administrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `ID_Consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `ID_Consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `especialidad`
 --
 ALTER TABLE `especialidad`
-  MODIFY `ID_Especialidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Especialidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -209,8 +233,9 @@ ALTER TABLE `especialidad`
 -- Filtros para la tabla `consulta`
 --
 ALTER TABLE `consulta`
-  ADD CONSTRAINT `consulta_ibfk_1` FOREIGN KEY (`Cedula_P`) REFERENCES `paciente` (`Cedula_P`),
-  ADD CONSTRAINT `consulta_ibfk_2` FOREIGN KEY (`ID_Especialidad`) REFERENCES `especialidad` (`ID_Especialidad`);
+  ADD CONSTRAINT `consulta_ibfk_1` FOREIGN KEY (`Cedula_D`) REFERENCES `doctor` (`Cedula_D`),
+  ADD CONSTRAINT `consulta_ibfk_2` FOREIGN KEY (`Cedula_P`) REFERENCES `paciente` (`Cedula_P`),
+  ADD CONSTRAINT `consulta_ibfk_3` FOREIGN KEY (`ID_Especialidad`) REFERENCES `especialidad` (`ID_Especialidad`);
 
 --
 -- Filtros para la tabla `doctor`
