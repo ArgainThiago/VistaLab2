@@ -54,7 +54,7 @@ $result = mysqli_query($conn, "SELECT * FROM paciente");
             <td>Paciente: <?php echo $row['Nombre_P'];?></td>
             <td>   CI: <?php echo $row['Cedula_P'];?></td>
             <td>
-              <button onclick="location.href='../Administradores/Paciente/Eliminar.php?Cedula_P=<?php echo $row['Cedula_P']; ?>'" class="Boton1">Eliminar</button>
+              <button onclick="location.href='../Administradores/Paciente/seelimina.php?Cedula_P=<?php echo $row['Cedula_P']; ?>'" class="Boton1">Eliminar</button>
               <button onclick="location.href='../Administradores/Paciente/Editar.php?Cedula_P=<?php echo $row['Cedula_P']; ?>'" class="Boton1">Modificar</button>
                
             </td>

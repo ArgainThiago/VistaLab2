@@ -60,7 +60,7 @@ $result = mysqli_query($conn, "SELECT * FROM doctor");
                 <td><?php echo $row['ID_Administrador'];?></td>
                 <td>
                     
-                    <button onclick="location.href='../Administradores/Doctor/seelimina.php'" class="Boton1">Eliminar</button>
+                    <button onclick="location.href='../Administradores/Doctor/seelimina.php?Cedula_D=<?php echo $row['Cedula_D']; ?>'" class="Boton1">Eliminar</button>
                     <button onclick="location.href='../Administradores/Doctor/Editar.php?Cedula_D=<?php echo $row['Cedula_D']; ?>'" class="Boton2">Modificar</button>
                 </td>
             </tr>

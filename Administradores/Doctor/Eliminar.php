@@ -7,15 +7,21 @@ if (isset($_GET['Cedula_D']) && is_numeric($_GET['Cedula_D'])) {
     die("Cédula del doctor inválida.");
 }
 
-$sql = "DELETE FROM doctor WHERE Cedula_D=$Cedula_D";
+$sql_consultas = "DELETE FROM consulta WHERE Cedula_D = $Cedula_D";
+mysqli_query($conn, $sql_consultas);
 
-if (mysqli_query($conn, $sql)) {
 
-    echo "Doctor eliminado correctamente.";
+$sql_doctor = "DELETE FROM doctor WHERE Cedula_D = $Cedula_D";
+
+if (mysqli_query($conn, $sql_doctor)) {
+    echo "<script>
+        alert('Doctor eliminado correctamente.');
+        window.location.href='../PaginaDeMedicos.php';
+    </script>";
 } else {
-    echo "Error: " . mysqli_error($conn);
+    echo "<script>
+        alert('Error al eliminar el doctor: " . mysqli_error($conn) . "');
+        window.location.href='../PaginaDeMedicos.php';
+    </script>";
 }
 ?>
-
-<a href="../PaginaDeMedicos.php">Volver</a>
-

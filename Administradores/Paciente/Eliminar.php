@@ -7,13 +7,21 @@ if (isset($_GET['Cedula_P']) && is_numeric($_GET['Cedula_P'])) {
     die("Cédula del paciente inválida.");
 }
 
-$sql = "DELETE FROM paciente WHERE Cedula_P = $Cedula_P";
 
-if (mysqli_query($conn, $sql)) {
-    echo "Paciente eliminado correctamente.";
+$sql_consultas = "DELETE FROM consulta WHERE Cedula_P = $Cedula_P";
+mysqli_query($conn, $sql_consultas);
+
+$sql_paciente = "DELETE FROM paciente WHERE Cedula_P = $Cedula_P";
+
+if (mysqli_query($conn, $sql_paciente)) {
+    echo "<script>
+        alert('Paciente eliminado correctamente.');
+        window.location.href='../PaginaDePacientes.php';
+    </script>";
 } else {
-    echo "Error: " . mysqli_error($conn);
+    echo "<script>
+        alert('Error al eliminar el paciente: " . mysqli_error($conn) . "');
+        window.location.href='../PaginaDePacientes.php';
+    </script>";
 }
 ?>
-
-<a href="../PaginaDePacientes.php">Volver</a>

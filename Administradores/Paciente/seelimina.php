@@ -2,14 +2,14 @@
 <?php
 include("../../Usuarios/Conexion.php");
 
-if (isset($_GET['Cedula_D']) && is_numeric($_GET['Cedula_D'])) {
-    $Cedula_D = (int) $_GET['Cedula_D'];
+if (isset($_GET['Cedula_P']) && is_numeric($_GET['Cedula_P'])) {
+    $Cedula_P = (int) $_GET['Cedula_P'];
 
-    $result = mysqli_query($conn, "SELECT * FROM doctor WHERE Cedula_D=$Cedula_D");
+    $result = mysqli_query($conn, "SELECT * FROM paciente WHERE Cedula_P=$Cedula_P");
     $row = mysqli_fetch_assoc($result);
 
     if (!$row) {
-        die("Doctor no encontrado.");
+        die("Paciente no encontrado.");
     }
 } else {
     die("ID inválido.");
@@ -21,7 +21,7 @@ if (isset($_GET['Cedula_D']) && is_numeric($_GET['Cedula_D'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Médico</title>
+    <title>Eliminar Paciente</title>
     <link rel="stylesheet" href="seelimina.css">
 </head>
 <body>
@@ -40,15 +40,15 @@ if (isset($_GET['Cedula_D']) && is_numeric($_GET['Cedula_D'])) {
                 </svg>
             </div>
             <div class="content">
-                <span class="title">Eliminar Médico</span>
+                <span class="title">Eliminar Paciente</span>
                 <p class="message">
                     ¿Está seguro que desea eliminar a este usuario?
                 </p>
             </div>
             <div class="actions">
-                <button onclick="location.href='Eliminar.php?Cedula_D=<?php echo $row['Cedula_D']; ?>'" 
+                <button onclick="location.href='Eliminar.php?Cedula_P=<?php echo $row['Cedula_P']; ?>'" 
                         type="button" class="desactivate">Eliminar</button>
-                <button onclick="location.href='../PaginaDeMedicos.php'" 
+                <button onclick="location.href='../PaginaDePacientes.php'" 
                         class="cancel" type="button">Cancelar</button>
             </div>
         </div>
