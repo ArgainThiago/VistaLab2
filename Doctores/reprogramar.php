@@ -39,7 +39,7 @@ $hora_actual = $cita['Horario'];
 <div class="cuadrado">
     <h2 class="titulo">Reprogramar cita de <?php echo htmlspecialchars($nombre_paciente); ?></h2>
 
-    <form action="actualizarcita.php" method="POST">
+    <form action="ActualizaCita.php" method="POST">
         <input type="hidden" name="id_consulta" value="<?php echo $id_consulta; ?>">
 
         <div class="info-paciente">

@@ -1,4 +1,12 @@
 
+@font-face {
+    font-family:'Paris';
+    src: url(Fuentes/Paris\ Forbel\ TTF.ttf);
+}
+@font-face {
+    font-family:'Rosaline';
+    src: url(Fuentes/Rosaline.otf);
+    }
 .superior {
       width: 100%;       
       height: 50px;       
@@ -76,7 +84,7 @@ body{
   text-align: center;
   justify-content: center;
   max-width: 550px;
-  height: 470px;
+  height: 610px;
    
    background-color:#8599b6;
    flex-direction: column;
@@ -135,13 +143,18 @@ align-items: center;
   grid-template-areas: "calendario . informacion_2";
 }
 
-h1{color:  #163d73;}
+h1{color:  #011125;}
 h3 {  font-size: 20px;
-color:#163d73;
+color:#092142;;
 }
-
+h2{
+  color:#092142 ;
+  font-family: "Rosaline";
+  font-size: 20px;
+}
 p.ayuda {
   font-size: 15px;
-  color:#163d73;;
+  color:#092142;
+  font-family:"Rosaline";
 }
 

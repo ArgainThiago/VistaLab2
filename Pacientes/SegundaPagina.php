@@ -1,6 +1,6 @@
-<?php 
+<?php
 session_start();
-include '../Base de datos/Conexion.php'; 
+include '../Base de datos/Conexion.php';
 
 if (!isset($_SESSION['usuario']) || $_SESSION['perfil'] !== 'paciente') {
     header("Location: ../login.html");
@@ -8,6 +8,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['perfil'] !== 'paciente') {
 }
 
 $usuario_sesion = $_SESSION['usuario'];
+
 
 $stmt = $conn->prepare("SELECT Nombre_P, Cedula_P FROM paciente WHERE Usuario_P=?");
 $stmt->bind_param("s", $usuario_sesion);
@@ -21,50 +22,49 @@ if ($result->num_rows === 1) {
 } else {
     die("Error: no se encontró el paciente.");
 }
-
 $stmt->close();
+
+$hoy = date('Y-m-d');
+
 
 $sql = "SELECT 
             c.ID_Consulta AS Numero,
             c.Fecha_Consulta AS Fecha,
+            c.Estado,
             e.Nom_Especialidad AS Especialidad,
-            d.Nombre_D AS Medico,
-            c.Estado
+            d.Nombre_D AS Medico
         FROM consulta c
         INNER JOIN especialidad e ON c.ID_Especialidad = e.ID_Especialidad
         INNER JOIN doctor d ON c.Cedula_D = d.Cedula_D
         WHERE c.Cedula_P = ?
-        ORDER BY c.Fecha_Consulta DESC";
+        ORDER BY 
+            CASE 
+                WHEN c.Estado NOT IN ('Cancelado') AND c.Fecha_Consulta >= ? THEN 0 
+                ELSE 1 
+            END,
+            c.Fecha_Consulta DESC";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $cedula_paciente);
+$stmt->bind_param("ss", $cedula_paciente, $hoy);
 $stmt->execute();
 $consultas = $stmt->get_result();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaludLab - Citas</title>
     <link rel="stylesheet" href="../SegundaPagina.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 <body>
 
     <button class="hamburger" onclick="toggleMenu()">☰</button>
-
- 
     <nav id="menu" class="menu">
         <ul>
             <li><a href="../inicio.html">Inicio</a></li>
-            
         </ul>
     </nav>
-
-    <button class="Robot"></button>
-    
 
     <div class="superior">
         <button onclick="location.href='Agenda.html'" class="mi-boton">Agregar Cita</button>
@@ -72,7 +72,7 @@ $consultas = $stmt->get_result();
         <img src="../Imagenes/logohospital.png" alt="logo" class="logo">
     </div>
 
-    <h1 class="Cita">Citas</h1>
+    <h1 class="Cita">Mis Citas</h1>
 
     <div class="tablas">
         <div class="estilos">
@@ -82,7 +82,7 @@ $consultas = $stmt->get_result();
                         <th class="fecha">Fecha</th>
                         <th>Especialidad</th>
                         <th>Médico</th>
-                        <th>Acción</th>
+                        <th>Acción / Estado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,13 +93,13 @@ $consultas = $stmt->get_result();
                                 <td><?php echo htmlspecialchars($cita['Especialidad']); ?></td>
                                 <td><?php echo htmlspecialchars($cita['Medico']); ?></td>
                                 <td>
-                                    <?php if($cita['Estado'] === 'Ocupado'): ?>
-                                        <form method="post" action="cancelar_cita.php" style="display:inline;">
-                                            <input type="hidden" name="id_consulta" value="<?php echo $cita['Numero']; ?>">
-                                            <input type="submit" value="Cancelar" class="btn-cancelar" onclick="return confirm('¿Seguro que deseas cancelar esta cita?');">
-                                        </form>
+                                    <?php if ($cita['Estado'] === 'Cancelado' || $cita['Fecha'] < $hoy): ?>
+                                        <?php echo ($cita['Estado'] === 'Cancelado') ? 'Cancelado' : 'La fecha ya pasó'; ?>
                                     <?php else: ?>
-                                        Cancelado
+                                        <form method="get" action="Eliminar.php" style="display:inline;">
+                                            <input type="hidden" name="ID_Consulta" value="<?php echo $cita['Numero']; ?>">
+                                            <input type="submit" value="Cancelar" class="NoConcurrio" onclick="return confirm('¿Seguro que deseas cancelar esta cita? Esta acción no se puede deshacer.');">
+                                        </form>
                                     <?php endif; ?>
                                 </td>
                             </tr>

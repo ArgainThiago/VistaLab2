@@ -1,17 +1,16 @@
 <?php
 include '../Base de datos/Conexion.php';
 
-if (isset($_POST['id_especialidad'])) {
-    $idEsp = $_POST['id_especialidad'];
+if (isset($_POST['nombre_especialidad'])) {
+    $nombreEsp = $_POST['nombre_especialidad'];
 
-    //se obtienen los doctores con esa especialidad 
     $stmt = $conn->prepare("
-        SELECT d.Cedula_D, d.Nombre_D 
+        SELECT DISTINCT d.Cedula_D, d.Nombre_D
         FROM doctor d
         INNER JOIN especialidad e ON d.Cedula_D = e.Cedula_D
-        WHERE e.ID_Especialidad = ?
+        WHERE e.Nom_Especialidad = ?
     ");
-    $stmt->bind_param("i", $idEsp);
+    $stmt->bind_param("s", $nombreEsp);
     $stmt->execute();
     $res = $stmt->get_result();
 
@@ -19,4 +18,7 @@ if (isset($_POST['id_especialidad'])) {
     while ($row = $res->fetch_assoc()) {
         echo '<option value="'.$row['Cedula_D'].'">'.$row['Nombre_D'].'</option>';
     }
-    }
+
+    $stmt->close();
+}
+?>

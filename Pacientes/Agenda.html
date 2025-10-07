@@ -8,36 +8,25 @@
     <link rel="stylesheet" href="Agenda.css">
 </head>
 <body>
+     <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+<nav id="menu" class="menu">
+    <ul>
+        <li><a href="../inicio.html">Inicio</a></li>
+        <li><a href="SegundaPagina.php">Atras</a></li>
+    </ul>
+</nav>
     <button class="Robot"></button>
 
     <div class="superior">
-       <div class="group">
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="search-icon">
-                <g>
-                    <path d="M21.53 20.47l-3.66-3.66C19.195 
-                    15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 
-                    4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 
-                    5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 
-                    11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 
-                    7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-                </g>
-            </svg>
-
-            <input
-                id="query"
-                class="input"
-                type="search"
-                placeholder="Buscar pacientes..."
-                name="searchbar"
-            />
-        </div>
+     
 
         <p class="Texto">SaludLab</p>
 
         <img src="../Imagenes/logohospital.png" alt="logo" class="logo">
     </div>
 
-    <h1>Seleccione el</h1>
+    
     <div class="navegacion">
         <button id="mes-anterior">&#9664; Mes anterior</button>
         <button id="mes-siguiente">Mes siguiente &#9654;</button>
@@ -49,5 +38,10 @@
 
     <script src="calendario.js"></script>
     <script src="/VistaLab/Pacientes/calendario.js"></script>
+    <script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("show");
+}
+</script>
 </body>
 </html>

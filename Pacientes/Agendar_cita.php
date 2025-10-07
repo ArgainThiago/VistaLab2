@@ -33,7 +33,8 @@ if ($fechaSeleccionada < $hoy) {
     exit();
 }
 
-$especialidades = $conn->query("SELECT ID_Especialidad, Nom_Especialidad FROM especialidad");
+
+$especialidades = $conn->query("SELECT DISTINCT Nom_Especialidad FROM especialidad");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -61,10 +62,10 @@ $especialidades = $conn->query("SELECT ID_Especialidad, Nom_Especialidad FROM es
 
         <p>
             <label for="especialidad">Especialidad:</label>
-            <select name="id_especialidad" id="especialidad" required>
+            <select name="nombre_especialidad" id="especialidad" required>
                 <option value="">Seleccione la especialidad</option>
                 <?php while($esp = $especialidades->fetch_assoc()): ?>
-                    <option value="<?php echo $esp['ID_Especialidad']; ?>"><?php echo $esp['Nom_Especialidad']; ?></option>
+                    <option value="<?php echo $esp['Nom_Especialidad']; ?>"><?php echo $esp['Nom_Especialidad']; ?></option>
                 <?php endwhile; ?>
             </select>
         </p>
@@ -93,12 +94,12 @@ $especialidades = $conn->query("SELECT ID_Especialidad, Nom_Especialidad FROM es
 <script>
 $(document).ready(function() {
     $('#especialidad').change(function() {
-        var id_especialidad = $(this).val();
-        if(id_especialidad) {
+        var nombre_especialidad = $(this).val();
+        if(nombre_especialidad) {
             $.ajax({
                 type: 'POST',
                 url: 'obtener_medicos.php',
-                data: {id_especialidad: id_especialidad},
+                data: {nombre_especialidad: nombre_especialidad},
                 success: function(html) {
                     $('#medico').html(html);
                     $('#horario').html('<option value="">Seleccione el horario</option>');

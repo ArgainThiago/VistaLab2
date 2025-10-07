@@ -5,7 +5,7 @@ session_start();//Permite almacenar datos del usuario ($_SESSION) que estarán d
 $host = "localhost"; 
 $user = "root";
 $pass = "";
-$db   = "basededatos";
+$db   = "basededatos3";
 
 $conn = new mysqli($host, $user, $pass, $db);
 $conn->set_charset("utf8");

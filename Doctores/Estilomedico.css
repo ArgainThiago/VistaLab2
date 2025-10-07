@@ -16,6 +16,15 @@ background-attachment: fixed;
 
 
 }
+.Atender{
+color: white;
+width: 100px;
+height: 20px;
+background-color:#00bf63;
+border-radius:10px;
+
+
+}
 .superior{
 
     display: flex;
@@ -205,4 +214,56 @@ border-radius:10px;
 }
 .Agregar:hover{
      background-color: #2069e0;
+}
+.hamburger {
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: -250px; 
+    width: 250px;
+    height: 100%;
+    background-color: #082c6c;
+    transition: left 0.3s ease;
+    padding-top: 60px;
+    z-index: 1000;
+}
+
+.menu.show {
+    left: 0;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu ul li {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.menu ul li a {
+    color: #c4ad5c;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    padding: 10px;
+    transition: background 0.2s;
+}
+
+.menu ul li a:hover {
+    background: #2069e0;
+    color: white;
+    border-radius: 10px;
 }
