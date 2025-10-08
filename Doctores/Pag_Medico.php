@@ -83,7 +83,7 @@ $consultas = $stmt->get_result();
 
 <nav id="menu" class="menu">
     <ul>
-        <li><a href="../inicio.html">Inicio</a></li>
+        <li><a href="../inicio.html">Cerrar Sesion</a></li>
     </ul>
 </nav>
 

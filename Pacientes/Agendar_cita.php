@@ -25,26 +25,24 @@ if ($result->num_rows === 1) {
 
 $stmt->close();
 
-$fechaSeleccionada = isset($_GET['fecha']) ? $_GET['fecha'] : date('Y-m-d');
-$hoy = date('Y-m-d');
+$especialidades = $conn->query("SELECT DISTINCT Nom_Especialidad FROM especialidad");
 
-if ($fechaSeleccionada < $hoy) {
-    echo "<script>alert('No se puede seleccionar una fecha pasada.'); window.location.href='calendario.php';</script>";
+if(isset($_POST['nombre_especialidad'], $_POST['cedula_d'])){
+    $_SESSION['nombre_especialidad'] = $_POST['nombre_especialidad'];
+    $_SESSION['cedula_d'] = $_POST['cedula_d'];
+    header("Location: Agenda.php");
     exit();
 }
-
-
-$especialidades = $conn->query("SELECT DISTINCT Nom_Especialidad FROM especialidad");
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agendar cita</title>
-  <link rel="stylesheet" href="../estiloL.css">
-  <link rel="stylesheet" href="Estilo.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agendar cita</title>
+<link rel="stylesheet" href="../estiloL.css">
+<link rel="stylesheet" href="Estilo.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="cuadrado">
@@ -54,12 +52,8 @@ $especialidades = $conn->query("SELECT DISTINCT Nom_Especialidad FROM especialid
   <div class="info-paciente">
     <p>Paciente: <?php echo htmlspecialchars($nombre_paciente); ?></p>
     <p>Cédula: <?php echo htmlspecialchars($cedula_paciente); ?></p>
-    <p>Fecha seleccionada: <?php echo htmlspecialchars($fechaSeleccionada); ?></p>
 
-    <form method="post" action="guardar_cita.php">
-        <input type="hidden" name="fecha" value="<?php echo $fechaSeleccionada; ?>">
-        <input type="hidden" name="cedula_p" value="<?php echo $cedula_paciente; ?>">
-
+    <form method="post" action="">
         <p>
             <label for="especialidad">Especialidad:</label>
             <select name="nombre_especialidad" id="especialidad" required>
@@ -78,14 +72,7 @@ $especialidades = $conn->query("SELECT DISTINCT Nom_Especialidad FROM especialid
         </p>
 
         <p>
-            <label for="horario">Horario:</label>
-            <select name="hora" id="horario" required>
-                <option value="">Seleccione el horario</option>
-            </select>
-        </p>
-
-        <p>
-            <input type="submit" value="Agendar" />
+            <input type="submit" value="Siguiente" />
         </p>
     </form>
   </div>
@@ -102,29 +89,10 @@ $(document).ready(function() {
                 data: {nombre_especialidad: nombre_especialidad},
                 success: function(html) {
                     $('#medico').html(html);
-                    $('#horario').html('<option value="">Seleccione el horario</option>');
                 }
             });
         } else {
             $('#medico').html('<option value="">Seleccione el médico</option>');
-            $('#horario').html('<option value="">Seleccione el horario</option>');
-        }
-    });
-
-    $('#medico').change(function() {
-        var cedula_d = $(this).val();
-        var fecha = $('input[name="fecha"]').val();
-        if(cedula_d && fecha) {
-            $.ajax({
-                type: 'POST',
-                url: 'obtener_horarios.php',
-                data: {cedula_d: cedula_d, fecha: fecha},
-                success: function(html) {
-                    $('#horario').html(html);
-                }
-            });
-        } else {
-            $('#horario').html('<option value="">Seleccione el horario</option>');
         }
     });
 });

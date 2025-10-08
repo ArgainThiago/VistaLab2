@@ -55,13 +55,15 @@ $consultas = $stmt->get_result();
 
 <nav id="menu" class="menu">
     <ul>
-        <li><a href="../inicio.html">Inicio</a></li>
-        <li><a href="Pag_Medico.php">Atras</a></li>
+        <li><a href="../inicio.html">Cerrar Sesion</a></li>
+       
     </ul>
 </nav>
 <button class="Robot"></button>
 
 <div class="superior">
+    <button class="anterior2" onclick="location.href='Pag_Medico.php'">Atras</button>
+
     <div class="group">
       <svg viewBox="0 0 24 24" aria-hidden="true" class="search-icon">
         <g>

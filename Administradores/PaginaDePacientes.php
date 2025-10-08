@@ -16,8 +16,8 @@ $result = mysqli_query($conn, "SELECT * FROM paciente");
 
   <nav id="menu" class="menu">
       <ul>
-          <li><a href="../inicio.html">Inicio</a></li>
-          <li><a href="Pag_Admin.php">Atras</a></li>
+          <li><a href="../inicio.html">Cerrar Sesion</a></li>
+      
       </ul>
   </nav>
 
@@ -45,10 +45,11 @@ $result = mysqli_query($conn, "SELECT * FROM paciente");
         id="query"
         class="input"
         type="search"
-        placeholder="Buscar Pacientes..."
+        placeholder="Buscar Pacientes..." 
         name="searchbar"
         onkeyup="filtrarTabla()"
       />
+      <button class="anterior" onclick="location.href='Pag_Admin.php'">Atras</button>
       <button onclick="location.href='../Administradores/Paciente/Agregar.php'" class="Agregar">Agregar</button>
     </div>
 
@@ -68,6 +69,7 @@ $result = mysqli_query($conn, "SELECT * FROM paciente");
           <td>
             <button onclick="location.href='../Administradores/Paciente/seelimina.php?Cedula_P=<?php echo $row['Cedula_P']; ?>'" class="Boton1">Eliminar</button>
             <button onclick="location.href='../Administradores/Paciente/Editar.php?Cedula_P=<?php echo $row['Cedula_P']; ?>'" class="Boton2">Modificar</button>
+            
           </td>
         </tr>
         <?php } ?>

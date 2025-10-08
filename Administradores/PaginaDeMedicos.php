@@ -16,8 +16,8 @@ $result = mysqli_query($conn, "SELECT * FROM doctor");
 
   <nav id="menu" class="menu">
     <ul>
-      <li><a href="../inicio.html">Inicio</a></li>
-      <li><a href="Pag_Admin.php">Atrás</a></li>
+      <li><a href="../inicio.html">Cerrar Sesion</a></li>
+      
     </ul>
   </nav>
 
@@ -45,7 +45,8 @@ $result = mysqli_query($conn, "SELECT * FROM doctor");
         placeholder="Buscar Médicos..."
         name="searchbar"
         onkeyup="filtrarTabla()"/>
-      <button onclick="location.href='../Administradores/Doctor/Agregar.php'" class="Agregar">Agregar</button>
+         <button class="anterior" onclick="location.href='Pag_Admin.php'">Atras</button>
+        <button onclick="location.href='../Administradores/Doctor/Agregar.php'" class="Agregar">Agregar</button>
     </div>
 
     <p class="Texto">SaludLab</p>

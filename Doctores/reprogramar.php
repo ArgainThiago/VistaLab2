@@ -74,6 +74,7 @@ $hora_actual = $cita['Horario'];
         </div>
 
         <button type="submit">Reprogramar</button>
+        <button class="Atras">Atras</button>
     </form>
 </div>
 

@@ -269,7 +269,21 @@ border-radius:10px;
     color: white;
     border-radius: 10px;
 }
-
+.anterior{
+    color: white;
+  margin-left: 135px;
+    top: 0px;
+    position: absolute;
+    height: 30px;
+    width: 100px;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #c4ad5c;
+    transition: backgroud-color 0.3s ease;
+}
+.anterior:hover{
+     background-color: #2069e0;
+}
 @media(max-width: 768px){
   .superior{
   width: 100%;

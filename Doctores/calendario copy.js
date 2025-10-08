@@ -39,7 +39,7 @@ function generarCalendario(mes, anio){
         let fechaParam = `${anio}-${mesFormateado}-${diaFormateado}`;
 
         html += `<td>
-                    <button onclick="location.href='GestionHorarios.php?fecha=${fechaParam}'" 
+                    <button onclick="location.href='Agendas.php?fecha=${fechaParam}'" 
                         class="dia-boton ${claseHoy}" ${disabled}>${dia}</button>
                  </td>`;
 

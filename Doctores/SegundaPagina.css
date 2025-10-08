@@ -153,7 +153,12 @@ border-radius:10px;
 .Boton2:hover{
      background-color: #2069e0;
 }
-
+.anterior{
+position: absolute;
+margin-left: 10px;
+left: 10px;
+border-radius: 10px;
+}
 .tablas{
   display: flex;
   position: absolute;

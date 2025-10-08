@@ -46,12 +46,12 @@ $result = $stmt->get_result();
 
 <nav id="menu" class="menu">
     <ul>
-        <li><a href="../inicio.html">Inicio</a></li>
-        <li><a href="Agenda.html">Atras</a></li>
+        <li><a href="../inicio.html">Cerrar Sesion</a></li>
+      
     </ul>
 </nav>
  <div class="superior">
-   
+   <button class="anterior" onclick="location.href='Agenda.html'">Atras</button>
   <p class="Texto">SaludLab</p>
   <img src="../Imagenes/logohospital.png" alt="logo" class="logo">
 </div>
