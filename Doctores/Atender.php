@@ -7,13 +7,13 @@ if (!isset($_SESSION['usuario']) || $_SESSION['perfil'] !== 'medico') {
     exit();
 }
 
-// Obtener ID de la cita
+
 if (!isset($_GET['id'])) {
     die("ID de cita no proporcionado.");
 }
 $id_cita = (int)$_GET['id'];
 
-// Obtener información de la cita y del paciente
+
 $stmt = $conn->prepare("
     SELECT p.Nombre_P, p.Cedula_P, p.Sexo, p.Fecha_Nac, p.His_med, c.Fecha_Consulta
     FROM consulta c
@@ -31,13 +31,12 @@ if ($result->num_rows !== 1) {
 $paciente = $result->fetch_assoc();
 $stmt->close();
 
-// Procesar formulario de atención médica
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $diagnostico = mysqli_real_escape_string($conn, $_POST['diagnostico']);
     $tratamiento = mysqli_real_escape_string($conn, $_POST['tratamiento']);
     $indicaciones = mysqli_real_escape_string($conn, $_POST['indicaciones']);
 
-    // Formatear la nueva entrada como bloque separado
     $entrada = "-------------------------\n";
     $entrada .= "fecha de consulta: {$paciente['Fecha_Consulta']}\n";
     $entrada .= "Diagnostico: {$diagnostico}\n";
@@ -46,14 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $nuevo_historial = $paciente['His_med'] . "\n" . $entrada;
 
-    // Actualizar historial
+
     $stmt = $conn->prepare("UPDATE paciente SET His_med = ? WHERE Cedula_P = ?");
     $stmt->bind_param("ss", $nuevo_historial, $paciente['Cedula_P']);
 
     if ($stmt->execute()) {
         $stmt->close();
 
-        // Eliminar la cita
+  
         $stmt_del = $conn->prepare("DELETE FROM consulta WHERE ID_Consulta = ?");
         $stmt_del->bind_param("i", $id_cita);
         if ($stmt_del->execute()) {
@@ -83,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         border-left: 4px solid #3498db;
         padding: 10px;
         margin-bottom: 10px;
-        white-space: pre-wrap; /* Para respetar saltos de línea */
+        white-space: pre-wrap; 
         font-family: monospace;
         color: black;
     }

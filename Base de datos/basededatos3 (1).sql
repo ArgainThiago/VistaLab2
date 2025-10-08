@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2025 a las 03:22:44
+-- Tiempo de generación: 08-10-2025 a las 15:36:01
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -77,14 +77,35 @@ INSERT INTO `consulta` (`ID_Consulta`, `Cedula_D`, `ID_Especialidad`, `Fecha_Con
 (10, 54367989, 1, '2025-09-11', '09:00:00', 23456789, 'Ocupado'),
 (12, 54367989, 1, '2025-09-28', '11:00:00', 34567894, 'Ocupado'),
 (13, 56789875, 3, '2025-09-27', '15:00:00', 34567894, 'Ocupado'),
-(14, 56789875, 3, '2025-09-30', '09:00:00', 34567894, 'Cancelado'),
-(15, 56784876, 2, '2025-09-28', '17:00:00', 34567894, 'Disponible'),
-(16, 56784876, 2, '2025-09-29', '17:00:00', 34567894, 'Disponible'),
-(17, 56784876, 2, '2025-10-31', '11:00:00', 57383315, 'Ocupado'),
-(18, 56784876, 2, '2025-10-12', '15:00:00', 34567894, 'Disponible'),
+(15, 56784876, 2, '2025-10-29', '17:00:00', 34567894, 'Disponible'),
+(16, 56784876, 2, '2025-10-24', '11:00:00', 34567894, 'Disponible'),
 (19, 56784876, 2, '2025-09-30', '17:00:00', 34567894, 'Ocupado'),
 (20, 56784876, 2, '2025-10-31', '10:00:00', 34567894, 'Ocupado'),
-(21, 56784876, 2, '2026-01-01', '15:00:00', 34567894, 'Disponible');
+(28, 56784876, 2, '2025-10-17', '11:00:00', 34567894, 'Ocupado'),
+(30, 54367989, 1, '2025-10-23', '16:00:00', 34567894, 'Ocupado'),
+(31, 54367989, 1, '2025-10-26', '08:00:00', 34567894, 'Ocupado'),
+(32, 54367989, 1, '2025-10-12', '08:00:00', 34567894, 'Ocupado'),
+(33, 54367989, 1, '2025-10-12', '09:00:00', 34567894, 'Ocupado'),
+(34, 57445671, 1, '2025-10-08', '20:37:00', NULL, 'Cancelado'),
+(35, 57445671, 1, '2025-10-15', '19:43:00', NULL, 'Disponible'),
+(36, 57445671, 1, '2025-10-12', '10:00:00', NULL, 'Disponible'),
+(37, 57445671, 1, '2025-10-12', '10:30:00', NULL, 'Disponible'),
+(38, 57445671, 1, '2025-10-12', '11:00:00', NULL, 'Disponible'),
+(39, 57445671, 1, '2025-10-12', '11:30:00', NULL, 'Disponible'),
+(40, 57445671, 5, '2025-10-12', '15:00:00', 34567894, 'Ocupado');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `dias_trabajo`
+--
+
+CREATE TABLE `dias_trabajo` (
+  `id` int(11) NOT NULL,
+  `Cedula_D` int(11) NOT NULL,
+  `dia_semana` enum('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo') DEFAULT NULL,
+  `activo` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -108,10 +129,10 @@ CREATE TABLE `doctor` (
 --
 
 INSERT INTO `doctor` (`Cedula_D`, `Nombre_D`, `Correo`, `His_med`, `Tel`, `Contraseña_D`, `ID_Administrador`, `Usuario_D`) VALUES
-(57746, 'Juncho', 'si@gmail.com', 'nada', '09881234', '1234', 3, 'jucho'),
 (54367989, 'Jason Dematté', 'jasond45@gmail.com', 'Atendimientos: 13/4/2002 - 16/6/2004 - 25/11/2004', '093453269', '1234', 2, 'jason'),
 (56784876, 'Lucas Gómez', 'medlucasgom@gmail.com', 'Atendimientos: 15/8/2024 - 16/9/2024 - 25/1/2025', '097825637', '1234', 1, 'lucas'),
-(56789875, 'Marcos Fernández', 'medmarcosfer@gmail.com', 'Atendimientos: 13/4/2004 - 16/6/2004 - 25/11/2004', '097835567', '12345', 1, 'marcos');
+(56789875, 'Marcos Fernández', 'medmarcosfer@gmail.com', 'Atendimientos: 13/4/2004 - 16/6/2004 - 25/11/2004', '097835567', '12345', 1, 'marcos'),
+(57445671, 'Thiago', 'thiago123@gmail.com', 'nada', '09881234', '1234', 3, 'Thiago');
 
 -- --------------------------------------------------------
 
@@ -134,7 +155,8 @@ CREATE TABLE `especialidad` (
 INSERT INTO `especialidad` (`ID_Especialidad`, `Nom_Especialidad`, `Cedula_D`, `Descripcion`, `Fecha_Esp`) VALUES
 (1, 'Cardiología', 54367989, 'Se enfoca en el estudio, diagnóstico y tratamiento de enfermedades del corazón y los vasos sanguíneos', '2001-03-04'),
 (2, 'Quiropraccia', 56784876, 'Se dedica al estudio, diagnóstico y tratamiento de enfermedades de la piel, cabello y uñas', '2000-03-07'),
-(3, 'Otorrinolaringología', 56789875, 'Se enfoca en el estudio y tratamiento de las enfermedades del oído, nariz, garganta y estructuras relacionadas de la cabeza y cuello', '2004-02-08');
+(3, 'Otorrinolaringología', 56789875, 'Se enfoca en el estudio y tratamiento de las enfermedades del oído, nariz, garganta y estructuras relacionadas de la cabeza y cuello', '2004-02-08'),
+(5, 'Otorrinolaringología', 57445671, 'Se enfoca en el estudio y tratamiento de las enfermedades del oído, nariz, garganta y estructuras relacionadas de la cabeza y cuello', '2004-02-08');
 
 -- --------------------------------------------------------
 
@@ -159,10 +181,9 @@ CREATE TABLE `paciente` (
 --
 
 INSERT INTO `paciente` (`Cedula_P`, `Nombre_P`, `Fecha_Nac`, `Sexo`, `Correo`, `His_med`, `Tel`, `Contraseña_P`, `Usuario_P`) VALUES
-(23456789, 'Pedro García', '1980-05-16', 'Hombre', 'padrito@gmail.com', 'blablablablablablabla', '097876543', '23415', 'pedro'),
-(34567894, 'Martín López', '1989-06-06', 'Hombre', 'martincho12@gmail.com', 'Enfermedad: Sarampión 12/3/2014', '096784671', '1231', 'martin'),
-(57284529, 'Ramirito 123', '2007-11-11', 'Masculino', 'ramiroo@gmail.com', 'Sano (por ahora)', '098657234', '33234', 'Ramiro'),
-(57383315, 'belecita', '2007-09-06', 'Femenino', 'bebel@gmail.com', 'nada', '0998787', '34321', 'Belen');
+(23456789, 'Pedro García', '1980-05-16', 'Masculino', 'padrito@gmail.com', 'blablablablablablabla', '097876543', '2341', 'pedro'),
+(34567894, 'Martín López', '1989-06-06', 'Masculino', 'martincho12@gmail.com', 'Enfermedad: Sarampión 12/3/2015', '096784671', '1231', 'martin'),
+(2147483647, 'Ramiroulkinm Fachilont', '1520-09-06', 'Masculino', 'ramiroou@gmail.com', 'Wapo de nacimiento.\n-------------------------\nfecha de consulta: 2025-10-07\nDiagnostico: Gripe\nTratamiento: Perifar\nIndicaciones: No ir a clases por 3 meses.\n', '097654321', '87654321', 'Ramirou');
 
 --
 -- Índices para tablas volcadas
@@ -182,6 +203,13 @@ ALTER TABLE `consulta`
   ADD KEY `Cedula_D` (`Cedula_D`),
   ADD KEY `Cedula_P` (`Cedula_P`),
   ADD KEY `ID_Especialidad` (`ID_Especialidad`);
+
+--
+-- Indices de la tabla `dias_trabajo`
+--
+ALTER TABLE `dias_trabajo`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Cedula_D` (`Cedula_D`);
 
 --
 -- Indices de la tabla `doctor`
@@ -217,13 +245,19 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT de la tabla `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `ID_Consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ID_Consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT de la tabla `dias_trabajo`
+--
+ALTER TABLE `dias_trabajo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `especialidad`
 --
 ALTER TABLE `especialidad`
-  MODIFY `ID_Especialidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Especialidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -236,6 +270,12 @@ ALTER TABLE `consulta`
   ADD CONSTRAINT `consulta_ibfk_1` FOREIGN KEY (`Cedula_D`) REFERENCES `doctor` (`Cedula_D`),
   ADD CONSTRAINT `consulta_ibfk_2` FOREIGN KEY (`Cedula_P`) REFERENCES `paciente` (`Cedula_P`),
   ADD CONSTRAINT `consulta_ibfk_3` FOREIGN KEY (`ID_Especialidad`) REFERENCES `especialidad` (`ID_Especialidad`);
+
+--
+-- Filtros para la tabla `dias_trabajo`
+--
+ALTER TABLE `dias_trabajo`
+  ADD CONSTRAINT `dias_trabajo_ibfk_1` FOREIGN KEY (`Cedula_D`) REFERENCES `doctor` (`Cedula_D`);
 
 --
 -- Filtros para la tabla `doctor`

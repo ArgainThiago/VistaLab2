@@ -90,6 +90,7 @@ $consultas = $stmt->get_result();
 <div class="superior">
     <button onclick="location.href='BuscarPac.php'" class="pac">Pacientes</button>
     <button onclick="location.href='Agenda.html'" class="Boton">Agenda</button>
+    <button onclick="location.href='GestionHorarios.php'" class="Boton2">Mis Horarios</button>
     <p class="Texto">SaludLab - <?php echo htmlspecialchars($nombre_doctor); ?></p>
     <img src="../Imagenes/logohospital.png" alt="logo" class="logo">
 </div>

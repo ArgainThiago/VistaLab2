@@ -1,5 +1,6 @@
 let fechaActual = new Date();
-fechaActual.setHours(0,0,0,0);
+fechaActual.setHours(0,0,0,0); 
+
 let mes = fechaActual.getMonth();
 let anio = fechaActual.getFullYear();
 
@@ -17,7 +18,7 @@ function generarCalendario(mes, anio){
     for(let d of diasSemana) html += `<th>${d}</th>`;
     html += "</tr><tr>";
 
-    let diaSemana = (primerDia === 0) ? 7 : primerDia;
+    let diaSemana = (primerDia === 0) ? 7 : primerDia; 
     for(let i = 1; i < diaSemana; i++) html += "<td></td>";
 
     for(let dia = 1; dia <= diasMes; dia++){
@@ -32,7 +33,15 @@ function generarCalendario(mes, anio){
             disabled = "disabled";
         }
 
-        html += `<td><button onclick="location.href='Agendas.php?fecha=${anio}-${mes+1}-${dia}'" class="dia-boton ${claseHoy}" ${disabled}>${dia}</button></td>`;
+       
+        let mesFormateado = (mes + 1).toString().padStart(2, '0');
+        let diaFormateado = dia.toString().padStart(2, '0');
+        let fechaParam = `${anio}-${mesFormateado}-${diaFormateado}`;
+
+        html += `<td>
+                    <button onclick="location.href='GestionHorarios.php?fecha=${fechaParam}'" 
+                        class="dia-boton ${claseHoy}" ${disabled}>${dia}</button>
+                 </td>`;
 
         if((dia + diaSemana - 1) % 7 === 0) html += "</tr><tr>";
     }
@@ -40,7 +49,9 @@ function generarCalendario(mes, anio){
     calendarioDiv.innerHTML = html;
 }
 
+
 generarCalendario(mes, anio);
+
 
 document.getElementById("mes-anterior").addEventListener("click", ()=>{
     mes--;
@@ -59,3 +70,4 @@ document.getElementById("mes-siguiente").addEventListener("click", ()=>{
     }
     generarCalendario(mes, anio);
 });
+
