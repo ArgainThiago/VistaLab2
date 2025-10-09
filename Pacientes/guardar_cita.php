@@ -7,59 +7,56 @@ if(!isset($_SESSION['usuario']) || $_SESSION['perfil'] !== 'paciente'){
     exit();
 }
 
-if(!isset($_SESSION['cedula_d'], $_SESSION['nombre_especialidad'])){
-    echo "<script>alert('No se seleccionó médico o especialidad'); window.location.href='Agendar_cita.php';</script>";
+if(!isset($_SESSION['cedula_d']) || !isset($_POST['hora']) || !isset($_POST['fecha'])){
+    echo "<script>alert('Datos insuficientes.'); window.location.href='Agendar_cita.php';</script>";
     exit();
 }
 
-if(!isset($_POST['fecha'], $_POST['hora'])){
-    echo "<script>alert('No se seleccionó fecha u horario'); window.history.back();</script>";
-    exit();
-}
-
+$cedula_d = $_SESSION['cedula_d'];
+$cedula_p = $_SESSION['cedula_p'] ?? null; // cédula del paciente guardada al iniciar sesión
 $fecha = $_POST['fecha'];
 $hora = $_POST['hora'];
-$cedula_d = $_SESSION['cedula_d'];
-$especialidad = $_SESSION['nombre_especialidad'];
 
-$usuario_sesion = $_SESSION['usuario'];
-$stmt = $conn->prepare("SELECT Cedula_P FROM paciente WHERE Usuario_P=?");
-$stmt->bind_param("s", $usuario_sesion);
-$stmt->execute();
-$result = $stmt->get_result();
+// Validar que el horario siga disponible
+$verificar = $conn->prepare("
+    SELECT Estado 
+    FROM consulta 
+    WHERE Cedula_D=? AND Fecha_Consulta=? AND Horario=?");
+$verificar->bind_param("iss", $cedula_d, $fecha, $hora);
+$verificar->execute();
+$result = $verificar->get_result();
 
-if($result->num_rows !== 1){
-    echo "<script>alert('Paciente no encontrado'); window.location.href='../login.html';</script>";
+if($result->num_rows === 0){
+    echo "<script>alert('El horario no existe o ya fue tomado.'); window.location.href='Agenda.php';</script>";
     exit();
 }
 
-$cedula_p = $result->fetch_assoc()['Cedula_P'];
-$stmt->close();
-
-// Buscar ID de la especialidad
-$stmt2 = $conn->prepare("SELECT ID_Especialidad FROM especialidad WHERE Nom_Especialidad=? LIMIT 1");
-$stmt2->bind_param("s", $especialidad);
-$stmt2->execute();
-$result2 = $stmt2->get_result();
-
-if($result2->num_rows !== 1){
-    echo "<script>alert('Especialidad no encontrada'); window.location.href='Agendar_cita.php';</script>";
+$row = $result->fetch_assoc();
+if($row['Estado'] !== 'Disponible'){
+    echo "<script>alert('El horario ya fue reservado por otro paciente.'); window.location.href='Agenda.php';</script>";
     exit();
 }
 
-$id_especialidad = $result2->fetch_assoc()['ID_Especialidad'];
-$stmt2->close();
+// Actualizar la cita en la tabla "consulta"
+$update = $conn->prepare("
+    UPDATE consulta 
+    SET Cedula_P=?, Estado='Ocupado'
+    WHERE Cedula_D=? AND Fecha_Consulta=? AND Horario=?");
+$update->bind_param("iiss", $cedula_p, $cedula_d, $fecha, $hora);
 
-// Insertar la cita en la tabla consulta
-$stmt3 = $conn->prepare("INSERT INTO consulta (Cedula_D, ID_Especialidad, Fecha_Consulta, Horario, Cedula_P, Estado) VALUES (?, ?, ?, ?, ?, 'Ocupado')");
-$stmt3->bind_param("iisss", $cedula_d, $id_especialidad, $fecha, $hora, $cedula_p);
-
-if($stmt3->execute()){
-    echo "<script>alert('Cita agendada correctamente'); window.location.href='SegundaPagina.php';</script>";
+if($update->execute()){
+    echo "<script>
+        alert('Cita agendada correctamente para el $fecha a las $hora.');
+        window.location.href='SegundaPagina.php';
+    </script>";
 } else {
-    echo "<script>alert('Error al agendar cita'); window.history.back();</script>";
+    echo "<script>
+        alert('Error al guardar la cita.');
+        window.location.href='Agenda.php';
+    </script>";
 }
 
-$stmt3->close();
+$verificar->close();
+$update->close();
 $conn->close();
 ?>

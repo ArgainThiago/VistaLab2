@@ -18,8 +18,7 @@ $fecha_dia_mes = date('d', $timestamp);
 $fecha_mes = $meses[date('n', $timestamp) - 1];
 $fecha_ano = date('Y', $timestamp);
 
-
-$sql = "SELECT c.ID_Consulta, c.Fecha_Consulta, p.Nombre_P, e.Nom_Especialidad
+$sql = "SELECT c.ID_Consulta AS Numero, c.Fecha_Consulta, p.Nombre_P, e.Nom_Especialidad
         FROM consulta c
         INNER JOIN paciente p ON c.Cedula_P = p.Cedula_P
         INNER JOIN especialidad e ON c.ID_Especialidad = e.ID_Especialidad
@@ -42,18 +41,18 @@ $result = $stmt->get_result();
 </head>
 <body>
 
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
+<button class="hamburger" onclick="toggleMenu()">☰</button>
 
 <nav id="menu" class="menu">
     <ul>
         <li><a href="../inicio.html">Cerrar Sesion</a></li>
-      
     </ul>
 </nav>
- <div class="superior">
+
+<div class="superior">
    <button class="anterior" onclick="location.href='Agenda.html'">Atras</button>
-  <p class="Texto">SaludLab</p>
-  <img src="../Imagenes/logohospital.png" alt="logo" class="logo">
+   <p class="Texto">SaludLab</p>
+   <img src="../Imagenes/logohospital.png" alt="logo" class="logo">
 </div>
 
 <h1 class="Cita">Agendas</h1>
@@ -77,7 +76,7 @@ $result = $stmt->get_result();
                 <tr>
                     <th class="lateral"><?php echo htmlspecialchars($cita['Nom_Especialidad']); ?></th>
                     <th>Fecha: <?php echo htmlspecialchars($cita['Fecha_Consulta']); ?> Paciente: <?php echo htmlspecialchars($cita['Nombre_P']); ?></th>
-                    <th><button class="Reprogramar">Reprogramar</button></th>
+                    <th><button class="Atender" onclick="location.href='VerMas.php?id=<?php echo $cita['Numero']; ?>'">Ver Mas</button></th>
                 </tr>
             <?php endwhile; ?>
         <?php else: ?>
@@ -88,7 +87,8 @@ $result = $stmt->get_result();
     </table>
 </div>
 </div>
- <script>
+
+<script>
 function toggleMenu() {
     document.getElementById("menu").classList.toggle("show");
 }

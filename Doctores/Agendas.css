@@ -302,6 +302,15 @@ border-radius:10px;
 .anterior:hover{
      background-color: #2069e0;
 }
+.Atender{
+color: white;
+width: 100px;
+height: 20px;
+background-color:#00bf63;
+border-radius:10px;
+
+
+}
 @media (max-width: 768px) {
   .superior {
     width: 100%;

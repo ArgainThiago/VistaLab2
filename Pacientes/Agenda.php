@@ -28,12 +28,13 @@ $cedula_d = $_SESSION['cedula_d'];
 <button class="hamburger" onclick="toggleMenu()">☰</button>
 <nav id="menu" class="menu">
     <ul>
-        <li><a href="../inicio.html">Inicio</a></li>
-        <li><a href="SegundaPagina.php">Atras</a></li>
+        <li><a href="../inicio.html">Cerrar Sesion</a></li>
+        
     </ul>
 </nav>
 
 <div class="superior">
+     <button onclick="location.href='Agendar_cita.php'" class="mi-boton2">Atras</button>
     <p class="Texto">SaludLab</p>
     <img src="../Imagenes/logohospital.png" alt="logo" class="logo">
 </div>

@@ -8,11 +8,12 @@ if(!isset($_GET['id'])){
 
 $id_consulta = (int)$_GET['id'];
 
-
-$stmt = $conn->prepare("SELECT c.ID_Consulta, c.Fecha_Consulta, c.Horario, c.Cedula_D, p.Nombre_P 
-                        FROM consulta c
-                        LEFT JOIN paciente p ON c.Cedula_P = p.Cedula_P
-                        WHERE c.ID_Consulta=?");
+$stmt = $conn->prepare("
+    SELECT c.ID_Consulta, c.Fecha_Consulta, c.Horario, c.Cedula_D, p.Nombre_P 
+    FROM consulta c
+    LEFT JOIN paciente p ON c.Cedula_P = p.Cedula_P
+    WHERE c.ID_Consulta=?
+");
 $stmt->bind_param("i", $id_consulta);
 $stmt->execute();
 $cita = $stmt->get_result()->fetch_assoc();
@@ -51,10 +52,16 @@ $hora_actual = $cita['Horario'];
             <label>Horario:</label>
             <select name="hora" required>
                 <?php
-             
                 $horarios = ["08:00:00","09:00:00","10:00:00","11:00:00","15:00:00","16:00:00","17:00:00"];
 
-                $stmt2 = $conn->prepare("SELECT Horario FROM consulta WHERE Cedula_D=? AND Fecha_Consulta=? AND Estado='Ocupado' AND ID_Consulta<>?");
+                $stmt2 = $conn->prepare("
+                    SELECT Horario 
+                    FROM consulta 
+                    WHERE Cedula_D=? 
+                    AND Fecha_Consulta=? 
+                    AND Estado='Ocupado' 
+                    AND ID_Consulta<>?
+                ");
                 $stmt2->bind_param("isi", $cedula_doctor, $fecha_actual, $id_consulta);
                 $stmt2->execute();
                 $res = $stmt2->get_result();
@@ -69,12 +76,14 @@ $hora_actual = $cita['Horario'];
                         echo "<option value='$h' $selected>$h</option>";
                     }
                 }
+
+                $stmt2->close();
                 ?>
             </select>
         </div>
 
         <button type="submit">Reprogramar</button>
-        <button class="Atras">Atras</button>
+        <button type="button" onclick="window.history.back();" class="Atras">Atrás</button>
     </form>
 </div>
 

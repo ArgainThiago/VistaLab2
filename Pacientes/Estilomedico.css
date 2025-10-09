@@ -244,3 +244,19 @@ border-radius:10px;
     border-radius: 10px;
 }
 
+.mi-boton2{
+    color: white;
+    margin-left: 20px;
+    top: 70px;
+    position: absolute;
+    height: 30px;
+    width: 100px;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #c4ad5c;
+    transition: backgroud-color 0.3s ease;
+
+}
+.mi-boton:hover{
+     background-color: #2069e0;
+}

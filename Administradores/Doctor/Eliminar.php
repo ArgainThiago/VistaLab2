@@ -7,9 +7,11 @@ if (isset($_GET['Cedula_D']) && is_numeric($_GET['Cedula_D'])) {
     die("Cédula del doctor inválida.");
 }
 
+$sql_especialidades = "DELETE FROM especialidad WHERE Cedula_D = $Cedula_D";
+mysqli_query($conn, $sql_especialidades);
+
 $sql_consultas = "DELETE FROM consulta WHERE Cedula_D = $Cedula_D";
 mysqli_query($conn, $sql_consultas);
-
 
 $sql_doctor = "DELETE FROM doctor WHERE Cedula_D = $Cedula_D";
 

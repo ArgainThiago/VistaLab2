@@ -72,7 +72,8 @@ if(isset($_POST['nombre_especialidad'], $_POST['cedula_d'])){
         </p>
 
         <p>
-            <input type="submit" value="Siguiente" />
+            <input class="Siguiente" type="submit" value="Siguiente" />
+            <button onclick="location.href='SegundaPagina.php'" class="Volver">Volver</button>
         </p>
     </form>
   </div>

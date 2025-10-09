@@ -9,8 +9,8 @@ if (!isset($_SESSION['usuario']) || $_SESSION['perfil'] !== 'paciente') {
 
 $usuario_sesion = $_SESSION['usuario'];
 
-
-$stmt = $conn->prepare("SELECT Nombre_P, Cedula_P FROM paciente WHERE Usuario_P=?");
+// 🔹 Obtener datos del paciente logueado
+$stmt = $conn->prepare("SELECT Nombre_P, Cedula_P FROM paciente WHERE Usuario_P = ?");
 $stmt->bind_param("s", $usuario_sesion);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -19,6 +19,7 @@ if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
     $nombre_paciente = $row['Nombre_P'];
     $cedula_paciente = $row['Cedula_P'];
+    $_SESSION['cedula_p'] = $cedula_paciente; // por si no estaba guardada
 } else {
     die("Error: no se encontró el paciente.");
 }
@@ -26,23 +27,26 @@ $stmt->close();
 
 $hoy = date('Y-m-d');
 
-
-$sql = "SELECT 
-            c.ID_Consulta AS Numero,
-            c.Fecha_Consulta AS Fecha,
-            c.Estado,
-            e.Nom_Especialidad AS Especialidad,
-            d.Nombre_D AS Medico
-        FROM consulta c
-        INNER JOIN especialidad e ON c.ID_Especialidad = e.ID_Especialidad
-        INNER JOIN doctor d ON c.Cedula_D = d.Cedula_D
-        WHERE c.Cedula_P = ?
-        ORDER BY 
-            CASE 
-                WHEN c.Estado NOT IN ('Cancelado') AND c.Fecha_Consulta >= ? THEN 0 
-                ELSE 1 
-            END,
-            c.Fecha_Consulta DESC";
+// 🔹 Consulta actualizada (ahora muestra las citas del paciente logueado)
+$sql = "
+SELECT 
+    c.ID_Consulta AS Numero,
+    c.Fecha_Consulta AS Fecha,
+    c.Horario,
+    c.Estado,
+    e.Nom_Especialidad AS Especialidad,
+    d.Nombre_D AS Medico
+FROM consulta c
+INNER JOIN especialidad e ON c.ID_Especialidad = e.ID_Especialidad
+INNER JOIN doctor d ON c.Cedula_D = d.Cedula_D
+WHERE c.Cedula_P = ?
+ORDER BY 
+    CASE 
+        WHEN c.Estado NOT IN ('Cancelado') AND c.Fecha_Consulta >= ? THEN 0 
+        ELSE 1 
+    END,
+    c.Fecha_Consulta DESC
+";
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $cedula_paciente, $hoy);
@@ -62,7 +66,7 @@ $consultas = $stmt->get_result();
     <button class="hamburger" onclick="toggleMenu()">☰</button>
     <nav id="menu" class="menu">
         <ul>
-            <li><a href="../inicio.html">Inicio</a></li>
+            <li><a href="../inicio.html">Cerrar Sesión</a></li>
         </ul>
     </nav>
 
@@ -80,6 +84,7 @@ $consultas = $stmt->get_result();
                 <thead>
                     <tr>
                         <th class="fecha">Fecha</th>
+                        <th>Hora</th>
                         <th>Especialidad</th>
                         <th>Médico</th>
                         <th>Acción / Estado</th>
@@ -90,6 +95,7 @@ $consultas = $stmt->get_result();
                         <?php while ($cita = $consultas->fetch_assoc()): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($cita['Fecha']); ?></td>
+                                <td><?php echo htmlspecialchars($cita['Horario']); ?></td>
                                 <td><?php echo htmlspecialchars($cita['Especialidad']); ?></td>
                                 <td><?php echo htmlspecialchars($cita['Medico']); ?></td>
                                 <td>
@@ -106,7 +112,7 @@ $consultas = $stmt->get_result();
                         <?php endwhile; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="4">No tienes citas agendadas.</td>
+                            <td colspan="5">No tienes citas agendadas.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
