@@ -72,6 +72,7 @@ $consultas = $stmt->get_result();
 
     <div class="superior">
         <button onclick="location.href='Agendar_cita.php'" class="mi-boton">Agregar Cita</button>
+         <button onclick="location.href='Ficha_med.php'" class="mi-boton2">Ficha medica</button>
         <p class="Texto">SaludLab</p>
         <img src="../Imagenes/logohospital.png" alt="logo" class="logo">
     </div>

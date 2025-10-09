@@ -75,3 +75,58 @@
 #mes-anterior{
   left: 150px;
 }
+@media (max-width: 768px) {
+    .calendario {
+        width: 85%;
+        max-width: 450px;
+        margin-top: 50px;
+    }
+     .superior{margin-top: 50px;}
+
+    .calendario th, .calendario td {
+        font-size: 13px;
+        height: 55px;
+    }
+
+    .dia-boton {
+        font-size: 13px;
+    }
+
+    .navegacion {
+        width: 85%;
+        width: 550px;
+        margin-top: 38px;
+    }
+    .mes-siguiente{margin-left: 500px;}
+     .logo{margin-right: -270px; height: 60px; width: 145px; margin-top: 50px;}
+      .mi-boton2{margin-top: 50px;}
+       .Texto{margin-top: 100px;}
+}
+
+@media (max-width: 480px) {
+    .hamburger{margin-top: 1px;}
+    .superior{margin-top: 50px;}
+    .calendario {
+        width: 95%;
+        max-width: 400px;
+        margin-top: 80px;
+    }
+    .mi-boton2{margin-top: 50px;}
+    .Texto{margin-top: 100px;}
+    .calendario th, .calendario td {
+        font-size: 11px;
+        height: 45px;
+    }
+
+    .dia-boton {
+        font-size: 11px;
+    }
+
+    .navegacion {
+        width: 95%;
+        width: 550px;
+        margin-top: 80px;
+    }
+     .mes-siguiente{position: absolute; margin-left: 200px;}
+     .logo{margin-right: -270px; height: 40px; width: 100px; margin-top: 60px;}
+}
