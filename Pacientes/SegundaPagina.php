@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['perfil'] !== 'paciente') {
 
 $usuario_sesion = $_SESSION['usuario'];
 
-// 🔹 Obtener datos del paciente logueado
+
 $stmt = $conn->prepare("SELECT Nombre_P, Cedula_P FROM paciente WHERE Usuario_P = ?");
 $stmt->bind_param("s", $usuario_sesion);
 $stmt->execute();
@@ -19,7 +19,7 @@ if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
     $nombre_paciente = $row['Nombre_P'];
     $cedula_paciente = $row['Cedula_P'];
-    $_SESSION['cedula_p'] = $cedula_paciente; // por si no estaba guardada
+    $_SESSION['cedula_p'] = $cedula_paciente;
 } else {
     die("Error: no se encontró el paciente.");
 }
@@ -27,7 +27,7 @@ $stmt->close();
 
 $hoy = date('Y-m-d');
 
-// 🔹 Consulta actualizada (ahora muestra las citas del paciente logueado)
+
 $sql = "
 SELECT 
     c.ID_Consulta AS Numero,

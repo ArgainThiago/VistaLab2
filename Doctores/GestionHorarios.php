@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['perfil'] !== 'medico') {
 
 $usuario_sesion = $_SESSION['usuario'];
 
-// Obtener datos del doctor
+
 $stmt = $conn->prepare("SELECT Cedula_D, Nombre_D FROM doctor WHERE Usuario_D=?");
 $stmt->bind_param("s", $usuario_sesion);
 $stmt->execute();
@@ -17,17 +17,14 @@ $row = $stmt->get_result()->fetch_assoc();
 $cedula_doctor = $row['Cedula_D'];
 $nombre_doctor = $row['Nombre_D'];
 
-// -------- 🔹 ELIMINAR TURNOS DE MÁS DE 2 DÍAS ATRÁS --------
 $fecha_limite = date('Y-m-d', strtotime('-2 days'));
 $delete = $conn->prepare("DELETE FROM consulta WHERE Cedula_D=? AND Fecha_Consulta < ?");
 $delete->bind_param("is", $cedula_doctor, $fecha_limite);
 $delete->execute();
-// -----------------------------------------------------------
 
-// Fecha seleccionada
 $fechaSeleccionada = isset($_GET['fecha']) ? $_GET['fecha'] : '';
 
-// Guardar nuevo horario
+
 if(isset($_POST['fecha'], $_POST['hora_inicio'], $_POST['hora_fin'])){
     $fecha = $_POST['fecha'];
     $hora_inicio = $_POST['hora_inicio'];

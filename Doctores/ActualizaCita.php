@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../Usuarios/Conexion.php");
+include("../Backend/Conexion.php");
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $id_consulta = (int)$_POST['id_consulta'];

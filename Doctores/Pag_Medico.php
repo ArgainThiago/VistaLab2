@@ -120,14 +120,6 @@ $consultas = $stmt->get_result();
                                 <input type="hidden" name="no_concurrio_id" value="<?php echo $cita['Numero']; ?>">
                                 <input type="submit" class="NoConcurrio" value="No Concurrió" onclick="return confirm('¿Eliminar esta cita?');">
                             </form>
-
-                    
-                            <form method="get" action="reprogramar.php" style="display:inline;">
-                                <input type="hidden" name="id" value="<?php echo $cita['Numero']; ?>">
-                                <input type="submit" class="Reprogramar" value="Reprogramar">
-                            </form>
-
-                         
                             <form method="get" action="Atender.php" style="display:inline;">
                                 <input type="hidden" name="id" value="<?php echo $cita['Numero']; ?>">
                                 <input type="submit" class="Atender" value="Atender">

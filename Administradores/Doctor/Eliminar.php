@@ -1,5 +1,5 @@
 <?php 
-include("../../Usuarios/Conexion.php");
+include("../../Backend/Conexion.php");
 
 if (isset($_GET['Cedula_D']) && is_numeric($_GET['Cedula_D'])) {
     $Cedula_D = (int) $_GET['Cedula_D'];

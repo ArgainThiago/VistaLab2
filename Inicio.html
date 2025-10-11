@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Hospital Regional Salto</title>
     <link rel="stylesheet" href="EstiloP.css">
+        <style>
+      
+        #chatbox {margin-left: 80px;
+            text-align: center;
+            background: #fff; padding: 15px; border-radius: 10px;
+            width: 400px; height: 300px; overflow-y: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .msg { margin: 5px 0;text-align: left;}
+        .user { color: blue;}
+        .bot { color: green;}
+        input { width: 320px; padding: 5px; }
+        button { padding: 6px 10px; margin-left: 430px; cursor: pointer; margin-top: 10px; }
+        #mensaje{ margin-left: 80px; margin-top: 10px; position:absolute; z-index: 2;}
+        .chatbot h2{text-align: center;}
+    </style>
 </head>     
     <body>
         <div class="superior">
@@ -25,13 +41,41 @@ Nuestro objetivo es ofrecer una experiencia más eficiente, humana y ordenada ta
            
             
             </div>
+          
             <div class="informacion_2">
             <h3>Chat de ayuda</h3>
             <p class="ayuda">El chat ayuda esta con la finalidad de ayudar a la dudas del usuario.</p>
             </div>
             <br>
             <div class="informacion_1"></div>
-            <div class="chatbot"></div> 
+            <div class="chatbot"> <h2 class="SaludChat" >SaludChat</h2>
+    <div id="chatbox"></div>
+    <input type="text" id="mensaje" placeholder="Escribe tu mensaje..."/>
+    <button onclick="enviarMensaje()">Enviar</button>
+
+    <script>
+        async function enviarMensaje() {
+            const mensaje = document.getElementById('mensaje').value;
+            const chatbox = document.getElementById('chatbox');
+            chatbox.innerHTML += `<div class="msg user"><b>Tú:</b> ${mensaje}</div>`;
+            document.getElementById('mensaje').value = "";
+
+            try {
+                const respuesta = await fetch("https://joana-fishless-hung.ngrok-free.dev/chatbot", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ mensaje })
+                });
+
+                if (!respuesta.ok) throw new Error(`Error del servidor: ${respuesta.status}`);
+
+                const data = await respuesta.json();
+                chatbox.innerHTML += `<div class="msg bot"><b>Bot:</b> ${data.respuesta}</div>`;
+            } catch (error) {
+                chatbox.innerHTML += `<div class="msg bot" style="color:red;"><b>Error:</b> ${error.message}</div>`;
+            }
+        }
+    </script></div> 
         </div>
     </body>
     

@@ -100,12 +100,7 @@ INSERT INTO `consulta` (`ID_Consulta`, `Cedula_D`, `ID_Especialidad`, `Fecha_Con
 -- Estructura de tabla para la tabla `dias_trabajo`
 --
 
-CREATE TABLE `dias_trabajo` (
-  `id` int(11) NOT NULL,
-  `Cedula_D` int(11) NOT NULL,
-  `dia_semana` enum('Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo') DEFAULT NULL,
-  `activo` tinyint(1) DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
@@ -271,13 +266,7 @@ ALTER TABLE `consulta`
   ADD CONSTRAINT `consulta_ibfk_2` FOREIGN KEY (`Cedula_P`) REFERENCES `paciente` (`Cedula_P`),
   ADD CONSTRAINT `consulta_ibfk_3` FOREIGN KEY (`ID_Especialidad`) REFERENCES `especialidad` (`ID_Especialidad`);
 
---
--- Filtros para la tabla `dias_trabajo`
---
-ALTER TABLE `dias_trabajo`
-  ADD CONSTRAINT `dias_trabajo_ibfk_1` FOREIGN KEY (`Cedula_D`) REFERENCES `doctor` (`Cedula_D`);
 
---
 -- Filtros para la tabla `doctor`
 --
 ALTER TABLE `doctor`

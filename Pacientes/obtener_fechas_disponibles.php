@@ -2,12 +2,12 @@
 header('Content-Type: application/json; charset=utf-8');
 include '../Base de datos/Conexion.php';
 
-// Leer parámetros (acepta varios nombres por compatibilidad)
+
 $medico = isset($_GET['medico']) ? intval($_GET['medico']) : (isset($_GET['medico_id']) ? intval($_GET['medico_id']) : 0);
 $especialidad = isset($_GET['especialidad']) ? intval($_GET['especialidad']) : (isset($_GET['id_especialidad']) ? intval($_GET['id_especialidad']) : 0);
 
 if (!$medico || !$especialidad) {
-    // Parámetros insuficientes -> devolver array vacío
+    
     echo json_encode([]);
     exit;
 }

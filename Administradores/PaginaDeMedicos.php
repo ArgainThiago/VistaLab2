@@ -1,5 +1,5 @@
 <?php
-include("../Usuarios/Conexion.php");
+include("../Backend/Conexion.php");
 $result = mysqli_query($conn, "SELECT * FROM doctor");
 ?>
 <!DOCTYPE html>
@@ -75,7 +75,7 @@ $result = mysqli_query($conn, "SELECT * FROM doctor");
               <td>
                 <button onclick="location.href='../Administradores/Doctor/seelimina.php?Cedula_D=<?php echo $row['Cedula_D']; ?>'" class="Boton1">Eliminar</button>
                 <button onclick="location.href='../Administradores/Doctor/Editar.php?Cedula_D=<?php echo $row['Cedula_D']; ?>'" class="Boton2">Modificar</button>
-                <button onclick="location.href='../Administradores/Doctor/Disponibilidad.php?Cedula_D=<?php echo $row['Cedula_D']; ?>'" class="Boton2">Disponibilidad</button>
+                
               </td>
             </tr>
           <?php } ?>

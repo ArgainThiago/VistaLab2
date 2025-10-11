@@ -1,5 +1,5 @@
 <?php
-include("../../Usuarios/Conexion.php");
+include("../../Backend/Conexion.php");
 
 
 if (isset($_GET['Cedula_D']) && is_numeric($_GET['Cedula_D'])) {
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         Usuario: <input type="text" name="Usuario_D" value="<?php echo htmlspecialchars($Doctor['Usuario_D']); ?>" required><br><br>
 
         <button type="submit">Actualizar</button>
-        <button type="button" onclick="location.href='../PaginaDeMedicos'">Volver</button>
+        <button type="button" onclick="location.href='../PaginaDeMedicos.php'">Volver</button>
     </form>
   </div>
 </div>

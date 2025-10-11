@@ -20,7 +20,7 @@ if(!isset($_GET['fecha'])){
 $cedula_d = $_SESSION['cedula_d'];
 $fecha = $_GET['fecha'];
 
-// 🔹 Obtener los horarios disponibles (Estado='Disponible')
+
 $stmt = $conn->prepare("
     SELECT Horario 
     FROM consulta 

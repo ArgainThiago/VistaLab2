@@ -1,5 +1,5 @@
 <?php
-include("../Usuarios/Conexion.php");
+include("../Backend/Conexion.php");
 $result = mysqli_query($conn, "SELECT * FROM paciente");
 ?>
 

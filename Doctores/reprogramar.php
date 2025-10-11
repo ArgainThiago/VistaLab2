@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../Usuarios/Conexion.php");
+include("../Backend/Conexion.php");
 
 if(!isset($_GET['id'])){
     die("No se especificó la cita.");
