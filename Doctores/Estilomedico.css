@@ -298,3 +298,29 @@ border-radius:10px;
 .anterior2:hover{
      background-color: #2069e0;
 }
+
+@media (max-width: 480px) {
+.Texto{
+  font-size: 30px;
+  top: -10px;
+}
+.logo{
+  height: 50px;
+  width: 110px;
+  margin-top: 26px;
+  left: 350px;
+
+}
+.hamburger{
+  margin-top: 30px;
+  margin-left: -1px;
+}
+.group{left: 55px;
+
+  width: 160px;
+
+}
+.anterior2{
+   margin-left: 225px;
+}
+}

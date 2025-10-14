@@ -348,4 +348,7 @@ tr{
     height: 25px;
     margin-left: 215px;
   }
+  .hamburger{
+    top:45px;
+  }
 }

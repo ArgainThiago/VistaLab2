@@ -115,6 +115,9 @@
 
  }
 
- 
+ .anterior{
+  margin-top: -30px;
+  left: 30px;
+ }
 
 }
