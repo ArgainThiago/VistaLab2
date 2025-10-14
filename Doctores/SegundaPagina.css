@@ -331,7 +331,7 @@ tr{
     font-size: 12px;
   }
 
-  .mi-boton, .pac, .Boton {
+  .mi-boton, .pac, .Boton{
     width: 80px;
     height: 25px;
     font-size: 12px;
@@ -342,5 +342,10 @@ tr{
   .pac{
     top:40px;
     left:-15px;
+  }
+  .Boton2{top:40px;
+   width: 100px;
+    height: 25px;
+    margin-left: 215px;
   }
 }
