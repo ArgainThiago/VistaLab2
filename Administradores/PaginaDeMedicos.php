@@ -21,7 +21,6 @@ $result = mysqli_query($conn, "SELECT * FROM doctor");
     </ul>
   </nav>
 
-  <button class="Robot"></button>
 
   <div class="superior">
     <div class="group">

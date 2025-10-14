@@ -290,7 +290,34 @@ border-radius:10px;
   }
 }
 @media(max-width: 480px){
+  .Texto{margin-left: 65px;}
   .superior{
   width: 100%;
   }
+    .logo{
+    top: 50px;
+    width:110px ;
+    height: 40px;
+    left: 350px;
+  }
+  .Agregar{
+    top:0px;
+     width: 60px;
+     height: 30px;
+     font-size: 10px;
+     margin-left: 15px;
+  }
+  .anterior{
+     top:0px;
+     width: 60px;
+     height: 30px;
+     font-size: 10px;
+     margin-left: 85px;
+  }
+  .group{
+    width: 160px;
+    top:70px;
+    left: 20px;
+  }
+  .hamburger{margin-left: 15px;}
 }

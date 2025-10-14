@@ -21,7 +21,7 @@ $result = mysqli_query($conn, "SELECT * FROM paciente");
       </ul>
   </nav>
 
-  <button class="Robot"></button>
+
  
   <div class="superior">
     <div class="group">
