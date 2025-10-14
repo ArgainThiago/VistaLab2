@@ -153,6 +153,7 @@ background-attachment: fixed;
   background-color:#b2b8c5;
   border-radius: 30px;
   border-collapse: collapse;
+  z-index: 4;
 }
 .Cita{
     font-family: 'OpenSans';
@@ -195,10 +196,12 @@ table{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    position: absolute;
+    position: fixed;
     right: 50px;
     bottom: 40px;
     box-shadow: 5px 5px #072558;
+    z-index: 5;
+    
 }
 .Reprogramar{
 color: white;

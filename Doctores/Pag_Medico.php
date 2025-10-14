@@ -80,7 +80,7 @@ $consultas = $stmt->get_result();
 </head>
 <body>
 <button class="hamburger" onclick="toggleMenu()">☰</button>
-
+<button onclick="location.href='chatbot.php'" class="Robot"></button>
 <nav id="menu" class="menu">
     <ul>
         <li><a href="../inicio.html">Cerrar Sesion</a></li>

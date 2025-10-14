@@ -62,7 +62,7 @@ $consultas = $stmt->get_result();
     <link rel="stylesheet" href="../SegundaPagina.css">
 </head>
 <body>
-
+<button onclick="location.href='chatbot.php'" class="Robot"></button>
     <button class="hamburger" onclick="toggleMenu()">☰</button>
     <nav id="menu" class="menu">
         <ul>
