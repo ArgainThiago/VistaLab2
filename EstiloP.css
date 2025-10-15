@@ -74,7 +74,7 @@ body {
     text-align: center;
     justify-content: center;
     max-width: 550px;
-    height: 610px;
+    height: 540px;
     background-color: #8599b6;
     flex-direction: column;
     border-radius: 30px;
@@ -107,7 +107,7 @@ tr, th {
 }
 .chatbot {
     max-width: 590px;
-    height: 470px;
+    height: 395px;
     background-color: #8599b6;
     border-radius: 30px;
     margin-top: 150px;
@@ -128,9 +128,9 @@ tr, th {
     grid-template-areas: "calendario . informacion_2";
 }
 h1 { color: #011125; }
-h3 { font-size: 20px; color: #092142; }
-h2 { color: #092142; font-family: "Rosaline"; font-size: 20px; }
-p.ayuda { font-size: 15px; color: #092142; font-family:"Rosaline"; }
+.info { font-size: 20px; color: #092142; }
+h2 { color: #092142; font-size: 20px; }
+p.ayuda { font-size: 15px; color: #092142; }
 
 @media (max-width: 480px) {
     body { padding: 3%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
