@@ -36,7 +36,7 @@ if(isset($_POST['fecha'], $_POST['hora_inicio'], $_POST['hora_fin'])){
     while($inicio < $fin){
         $horaTurno = date('H:i:s', $inicio);
 
-        // Evitar duplicados
+        
         $check = $conn->prepare("SELECT * FROM consulta WHERE Cedula_D=? AND Fecha_Consulta=? AND Horario=?");
         $check->bind_param("iss", $cedula_doctor, $fecha, $horaTurno);
         $check->execute();
@@ -135,7 +135,7 @@ if(isset($_POST['fecha'], $_POST['hora_inicio'], $_POST['hora_fin'])){
     </div>
 
     <div style="text-align:center; margin-top:20px;">
-        <button onclick="window.history.back();">Volver</button>
+        <button onclick="location.href='Pag_Medico.php'">Volver</button>
     </div>
 </div>
 
